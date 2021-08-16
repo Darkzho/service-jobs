@@ -11,7 +11,11 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            emmanuele@gmail.com
+            <% if current_user %>
+              <%= current_user.email %>
+            <% else %>
+              <%= link_to "log in", new_user_session_path, class: "nav-link  dropdown " %> 
+            <% end  %>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="#">Datos personales</a></li>
@@ -19,7 +23,8 @@
             <li><a class="dropdown-item" href="#">Favoritos</a></li>
             <li><a class="dropdown-item" href="#">Historial</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Log out</a></li>
+            <%= link_to "Log out", destroy_user_session_path,
+                  method: :delete, class: "dropdown-item" %>
           </ul>
         </li>
       </ul>
