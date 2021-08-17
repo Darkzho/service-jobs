@@ -1,4 +1,12 @@
 <h2><%= @services.count %> Resultados encontrados </h2>
+
+  <div class="container">
+    <form class="d-flex bd-highlight">
+      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search" value="<%= params[:query] %>">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+
 <div class="services-container"> 
   <table>
     <% @services.each do |service| %>
@@ -13,7 +21,7 @@
           <% end %>
         </th> 
         <th>
-           <% if policy(service).destroy? %>
+          <% if policy(service).destroy? %>
           <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" } %></th>
           <% end %>
       </tr>

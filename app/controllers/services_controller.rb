@@ -3,8 +3,13 @@ class ServicesController < ApplicationController
 
   def index
     #@services = policy_scope(Service).order(created_at: :desc)
-    @services = Service.all
-    authorize @services
+    if params[:query].present?
+      @query = params[:query]
+      @services = Service.where("category LIKE ?", "%#{params[:query]}%")
+    else  
+      @services = Service.all
+      authorize @services
+    end
   end
 
   def new
