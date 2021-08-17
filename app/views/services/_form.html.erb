@@ -1,0 +1,10 @@
+<div class="container">
+  <%= simple_form_for (@service) do |f| %>
+    <%= f.input :title, input_html: { class: 'form-control'}  %>
+    <%= f.input :description, input_html: { class: 'form-control'}  %>
+    <%= f.input :category, input_html: { class: 'form-control'}  %>
+    <%= f.input :price, input_html: { class: 'form-control'}  %>
+    <%= f.submit "Enviar servicio", class:"btn btn-primary" %>
+  <% end %>
+</div>
+
