@@ -1,10 +1,24 @@
 <h2><%= @services.count %> Resultados encontrados </h2>
 <div class="services-container"> 
-  <ul>
+  <table>
     <% @services.each do |service| %>
-      <li><%= service.title %> <%= service.category %> <%= link_to "Show", service_path(service.id)  %> <%= link_to "Edit", edit_service_path(service.id) %> <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" } %> </li>
+      <tr>
+        <th><%= service.user_id %></th>
+        <th><%= service.title %></th>
+        <th><%= service.category %></th> 
+        <th><%= link_to "Show", service_path(service.id)  %></th> 
+        <th>
+          <% if policy(service).edit? %>
+          <%= link_to "Edit", edit_service_path(service.id) %>
+          <% end %>
+        </th> 
+        <th>
+           <% if policy(service).destroy? %>
+          <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" } %></th>
+          <% end %>
+      </tr>
     <% end %>
-  </ul>
+  </table> 
 </div>
 
 <%= link_to "Crear un nuevo servicio", new_service_path(@service) %>
