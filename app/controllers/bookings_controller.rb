@@ -3,18 +3,21 @@ class BookingsController < ApplicationController
   end
   
   def new
+    @service = Service.find(params[:service_id])
     @booking = Booking.new
     authorize @booking   
   end
 
   def create 
     @service = Service.find(params[:service_id])
-    @booking = Booking.new(booking_param)
+    @booking = Booking.new(booking_params)
     @booking.service = @service
     @booking.user = current_user
+    @booking.start_date = Time.now 
+    @booking.end_date = Time.now 
     authorize @booking
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to service_path(@service)
     else
       render :edit
     end
@@ -23,7 +26,8 @@ class BookingsController < ApplicationController
   def show
   end
 
-  def booking_param
-    params.require(:booking).permit(:start_date, :end_date, :service_id, :user_id)
+  def booking_params
+    params.permit(:start_date, :end_date, :service_id, :user_id)
   end
+
 end
