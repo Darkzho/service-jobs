@@ -1,0 +1,10 @@
+<h2><%= @services.count %> Resultados encontrados </h2>
+<div class="services-container"> 
+  <ul>
+    <% @services.each do |service| %>
+      <li><%= service.title %> <%= service.category %> <%= link_to "show", service_path(service.id)  %> <%= link_to "Edit", edit_service_path(service.id) %> <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" } %> </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "Crear un nuevo servicio", new_service_path(@service) %>
