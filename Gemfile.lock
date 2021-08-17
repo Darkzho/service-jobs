@@ -73,7 +73,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.7.7)
       msgpack (~> 1.0)
-    bootstrap (5.0.1)
+    bootstrap (5.0.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.2, < 3)
       sassc-rails (>= 2.0.0)
@@ -142,7 +142,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    popper_js (2.9.2)
+    popper_js (2.9.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -154,6 +154,8 @@ GEM
     public_suffix (4.0.6)
     puma (4.3.8)
       nio4r (~> 2.0)
+    pundit (2.1.1)
+      activesupport (>= 3.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.7.0)
@@ -280,6 +282,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 4.1)
+  pundit
   rails (~> 6.0.4)
   sass-rails (>= 6)
   selenium-webdriver
@@ -296,4 +299,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.20
+   2.2.25

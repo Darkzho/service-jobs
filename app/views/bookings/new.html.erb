@@ -1,0 +1,11 @@
+<div class="container">
+  <%= simple_form_for [@service, @booking] do |f| %>
+  <!--  <%= f.input :start_date, as: :string, label: 'Start date', input_html: {class: "datepicker", id: "range"} %> -->
+  <!--   <%= f.input :end_date, as: :string, label: 'End date', input_html: {class: "datepicker", id: "end_date"} %> -->
+    <%= f.submit "Enviar servicio", class:"btn btn-primary" %>
+  <% end %>
+</div>
+
+
+
+
