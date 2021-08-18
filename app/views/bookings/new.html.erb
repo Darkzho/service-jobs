@@ -1,8 +1,13 @@
 <div class="container">
+  <ul>
+  <li><%= @service.title %></li>
+  <li><%= @user.first_name %> <%= @user.last_name %></li>
+  <li><%= @service.price %></li>
+  </ul>
   <%= simple_form_for [@service, @booking] do |f| %>
   <!--  <%= f.input :start_date, as: :string, label: 'Start date', input_html: {class: "datepicker", id: "range"} %> -->
   <!--   <%= f.input :end_date, as: :string, label: 'End date', input_html: {class: "datepicker", id: "end_date"} %> -->
-    <%= f.submit "Enviar servicio", class:"btn btn-primary" %>
+    <%= f.submit "Confirmar", class:"btn btn-primary" %>
   <% end %>
 </div>
 
