@@ -1,10 +1,19 @@
 class UsersController < ApplicationController
   def index
-      @users = User.all
-      authorize @users
+    
+    authorize @user  
   end
 
   def show
+    @users = User.geocoded
+
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { user: user })
+      }
+    end
     @user = User.find(params[:id])
     @services = @user.services
     authorize @user
