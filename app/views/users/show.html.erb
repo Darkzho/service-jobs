@@ -1,0 +1,34 @@
+
+<%= @user.first_name %> <%= @user.last_name %>
+
+<p>Aquí va el mapa </p>
+
+<p>Aquí va el promedio del rating</p>
+
+<p>Lista de servicios</p>
+
+<div class="container mt-3"> 
+  <% @services.each do |service| %>
+    <div class="card mb-2">
+      <div class="card-header">
+        <%= service.category.capitalize %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= service.title.capitalize %></h5>
+        <p class="card-text"><%= service.description %></p>
+        <div class="d-flex ">
+          <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
+
+          <% if policy(service).edit? %>
+            <%= link_to "Edit", edit_service_path(service.id), class:"text-warning text-decoration-none me-3" %>
+          <% end %>
+
+          <% if policy(service).destroy? %>
+            <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"text-danger text-decoration-none" %></th>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
