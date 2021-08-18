@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
   def new
     @service = Service.find(params[:service_id])
     @booking = Booking.new
+    @user = @service.user
     authorize @booking   
   end
 

@@ -41,6 +41,7 @@ class ServicesController < ApplicationController
   end
 
   def show 
+    @user = @service.user
   end
 
   def destroy
