@@ -17,7 +17,7 @@ puts "Seeding"
 e = User.create(email: "etorres@mail.com", password: "123456", first_name: "Emmanuele", last_name: "Torres")
 v = User.create(email: "vjara@mail.com", password: "123456", first_name: "Victor", last_name: "Jara")
 c = User.create(email: "ccisterna@mail.com", password: "123456", first_name: "Cristobal", last_name: "Cisterna")
-m = User.create(email: "mpizarro@mail.com", password: "123456", first_name: "Manue", last_name: "Pizarro")
+m = User.create(email: "mpizarro@mail.com", password: "123456", first_name: "Manuel", last_name: "Pizarro")
 
 3.times do |a|
   a = Service.create(title: ["Reparación de cañerías", "Reparación de baño", "Instalación de calefont", "Instalacion de ducha"].sample,
