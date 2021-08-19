@@ -1,11 +1,8 @@
 class BookingsController < ApplicationController
-  def index
-  end
   
   def new
     @service = Service.find(params[:service_id])
     @booking = Booking.new
-    @user = @service.user
     authorize @booking   
   end
 
@@ -14,13 +11,11 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.service = @service
     @booking.user = current_user
-    @booking.start_date = Time.now 
-    @booking.end_date = Time.now 
     authorize @booking
-    if @booking.save
-      redirect_to service_path(@service)
+    if @booking.save!
+      redirect_to service_booking_path(@service, @booking)
     else
-      render :edit
+      render :new
     end
   end
   
@@ -28,7 +23,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.permit(:start_date, :end_date, :service_id, :user_id)
+    params.require(:booking).permit(:address)
   end
 
 end
