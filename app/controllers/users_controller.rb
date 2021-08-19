@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    
-    authorize @user  
-  end
-
   def show
     @users = User.geocoded
 
