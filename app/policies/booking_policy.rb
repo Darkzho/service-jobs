@@ -7,4 +7,7 @@ class BookingPolicy < ApplicationPolicy
     true
   end
   
+  def status?
+    true
+  end
 end
