@@ -24,6 +24,17 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def finished?
+    true
+  end
+  
+  def status
+    @booking = Booking.find(params[:booking_id])
+    authorize @booking
+  end
+  
+  private
+  
   def booking_params
     params.require(:booking).permit(:address, :start_date)
   end
