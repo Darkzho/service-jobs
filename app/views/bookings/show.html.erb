@@ -1,1 +1,8 @@
-<h3>Soy el show de booking</h3>
+<p>Estimado <%= @booking.user.first_name %></p>
+
+<p>La orden fue generada con éxito. Serás contactado en un plazo máximo de 24 horas por el colaborador</p>
+<p>Los detalles de la orden fueron enviados a <%= @booking.user.email %></p>
+
+<p>Tu número de orden es <%= @booking.id %></p>
+
+<p>Recuerda que cualquier consulta se hace a través del número de orden.</p>
