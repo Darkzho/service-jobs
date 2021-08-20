@@ -20,10 +20,12 @@ class BookingsController < ApplicationController
   end
   
   def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def booking_params
-    params.require(:booking).permit(:address)
+    params.require(:booking).permit(:address, :start_date)
   end
 
 end
