@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  def index
+    @user = current_user
+  end
+  
+  def menu
+    
+  end
+
   def show
     @users = User.geocoded
 
