@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :users, only: [:index, :show]
-  resources :reviews, only: [:new, :create]
+  resources :users, only: [:index, :show, :menu]
+  resources :reviews, only: [:index, :new, :create, :edit, :update]
 end
 
