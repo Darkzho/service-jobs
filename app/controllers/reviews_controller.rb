@@ -1,18 +1,15 @@
 class ReviewsController < ApplicationController
-  def new
-    @review = Review.new
-    authorize @review
-  end
-  
   def index
-    @reviews = Review.all
+    @user = User.find(params[:user_id])
   end
 
   def create 
+    @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
+    @review.booking = @booking
     authorize @review
-    if @review.save!
-      redirect_to reviews_path(@review)
+    if @review.save
+      redirect_to user_reviews_path(@booking.service.user_id)
     else
       render :new
     end

@@ -1,6 +1,10 @@
 <ul>
-  <% @reviews.each do |review| %>
-  <li><%= review.rating %> <%= review.content %> <%= link_to "editar", edit_review_path(review.id)  %></li>
-  <% end %>
+  <% @user.services.each do |u| %>
+    <% u.bookings.each do |i| %>
+      <% i.reviews.each do |e| %>
+        <%= e.rating %>
+      <% end %>
+    <% end %>
+  <% end %> 
 </ul>
 
