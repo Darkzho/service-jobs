@@ -8,7 +8,9 @@
 
 <div class="container d-flex justify-content-between mt-3">
   <h2><%= @services.count %> Resultados encontrados </h2>
-  <%= link_to "Crear un nuevo servicio", new_service_path(@service) %>
+  <% if policy(Service).create? %>
+    <%= link_to "Crear un nuevo servicio", new_service_path(@service) %>
+  <% end %>
 </div>
 <div class="container mt-3"> 
   <% @services.each do |service| %>

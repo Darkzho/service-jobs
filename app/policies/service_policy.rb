@@ -4,7 +4,7 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.owner?
   end
 
   def update?
