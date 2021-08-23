@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :service
-  has_many :reviews
+  has_many :reviews, foreign_key: "booking_id"
   validates :start_date, presence: true
   #validates :end_date, presence: true
   # geocoder

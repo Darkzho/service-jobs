@@ -1,10 +1,28 @@
-<p>Estimado <%= @booking.user.first_name %></p>
 
-<p>La orden fue generada con éxito. Serás contactado en un plazo máximo de 24 horas por el colaborador</p>
-<p>Los detalles de la orden fueron enviados a <%= @booking.user.email %></p>
+<!--<% if @booking.end_date.present? %> -->
+<!--<% else %> -->
+  <div class="container">
+    <%= simple_form_for [ @booking, @review ] do |f| %>
+      <%= f.input :content,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "content" } %>
+      <%= f.input :rating,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "rating" } %>
+      <%= f.submit "Confirmar", class:"btn btn-primary" %>
+    <% end %>
+  </div>
 
-<p>Tu número de orden es <%= @booking.id %></p>
+    <p>Estimado <%= @booking.user.first_name %></p>
 
-<p>Recuerda que cualquier consulta se hace a través del número de orden.</p>
+    <p>La orden fue generada con éxito. Serás contactado en un plazo máximo de 24 horas por el colaborador</p>
+    <p>Los detalles de la orden fueron enviados a <%= @booking.user.email %></p>
 
-<%= link_to "Volver a inicio", root_path, class: "btn btn-primary" %>
+    <p>Tu número de orden es <%= @booking.id %></p>
+
+    <p>Recuerda que cualquier consulta se hace a través del número de orden.</p>
+
+    <%= link_to "Volver a inicio", root_path, class: "btn btn-primary" %>
+<% end %>
