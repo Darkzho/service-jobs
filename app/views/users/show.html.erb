@@ -14,7 +14,7 @@
 <% end %>
     <% if count_review != 0 %>
       <% prom_review = sum_review / count_review %>
-      <%= prom_review.floor(1) %>
+      <%= link_to "#{prom_review.floor(1)}", user_reviews_path(@user) %>
     <% end %>
 
 <div id="map"
