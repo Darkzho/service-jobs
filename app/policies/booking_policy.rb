@@ -10,4 +10,8 @@ class BookingPolicy < ApplicationPolicy
   def status?
     true
   end
+
+  def chat?
+    true
+  end
 end

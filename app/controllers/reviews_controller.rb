@@ -3,6 +3,12 @@ class ReviewsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def new
+    @booking = Booking.find(params[:booking_id])
+    @review = Review.new
+    authorize @review
+  end
+
   def create 
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)

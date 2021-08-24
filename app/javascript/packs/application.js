@@ -29,6 +29,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initAutocomplete2 } from '../plugins/init_autocomplete'; 
 import { initFlatpickr } from '../plugins/flatpickr';
 import { initStarRating } from '../plugins/init_star_rating';
+import { refreshBtn } from '../plugins/init_chatbox';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -41,4 +42,5 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete2();
   initFlatpickr();
   initStarRating();
+  refreshBtn();
 });

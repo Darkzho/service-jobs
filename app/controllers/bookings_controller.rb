@@ -33,6 +33,12 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     authorize @booking
   end
+
+  def chat
+    @booking = Booking.find(params[:booking_id])
+    @user = current_user
+    authorize @booking
+  end
   
   private
   
