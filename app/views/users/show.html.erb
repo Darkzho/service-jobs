@@ -7,14 +7,14 @@
 <% @user.services.each do |service| %>
   <% service.bookings.each do |booking| %>
     <% booking.reviews.each do |review| %>
-      <% sum_review += review.rating  %>
+      <% sum_review += review.rating.to_f  %>
       <% count_review += 1 %>
     <% end %>
   <% end %>
 <% end %>
     <% if count_review != 0 %>
       <% prom_review = sum_review / count_review %>
-      <%= prom_review.floor(2) %>
+      <%= prom_review.floor(1) %>
     <% end %>
 
 <div id="map"
