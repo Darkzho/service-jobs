@@ -1,21 +1,27 @@
 
 <!--<% if @booking.end_date.present? %> -->
 <!--<% else %> -->
-  <div class="container">
+<div class="container mt-3">
+  <div class="a">
+    <h2>Califica el servicio recibido</h2>
     <%= simple_form_for [ @booking, @review ] do |f| %>
       <%= f.input :content,
+                    label: "Escribe una reseña",
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "content" } %>
       <%= f.input :rating,
+                    as: :select,
+                    collection: (1..5),
                     required: true,
+                    label: "¿Qué nota le pondrías al técnico?",
                     autofocus: true,
-                    input_html: { autocomplete: "rating" } %>
+                    input_html: { id: "review_rating" } %>
       <%= f.submit "Confirmar", class:"btn btn-primary" %>
     <% end %>
-  </div>
 
-    <p>Estimado <%= @booking.user.first_name %></p>
+
+    <p class="mt-3">Estimado <%= @booking.user.first_name %></p>
 
     <p>La orden fue generada con éxito. Serás contactado en un plazo máximo de 24 horas por el colaborador</p>
     <p>Los detalles de la orden fueron enviados a <%= @booking.user.email %></p>
@@ -25,4 +31,6 @@
     <p>Recuerda que cualquier consulta se hace a través del número de orden.</p>
 
     <%= link_to "Volver a inicio", root_path, class: "btn btn-primary" %>
-<% end %>
+  <% end %>
+  </div>
+</div>
