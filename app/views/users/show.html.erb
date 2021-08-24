@@ -12,8 +12,10 @@
     <% end %>
   <% end %>
 <% end %>
-    <% prom_review = sum_review/ count_review %>
-    <%= prom_review.to_f.round(2) %>*
+    <% if count_review != 0 %>
+      <% prom_review = sum_review / count_review %>
+      <%= prom_review.floor(2) %>
+    <% end %>
 
 <div id="map"
   style="width: 100%; height: 600px;"
