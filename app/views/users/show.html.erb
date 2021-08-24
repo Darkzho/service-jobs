@@ -1,14 +1,25 @@
 
 <%= @user.first_name %> <%= @user.last_name %>
 
-<p>Aquí va el mapa </p>
+<% sum_review = 0 %>
+<% count_review = 0 %>
+
+<% @user.services.each do |service| %>
+  <% service.bookings.each do |booking| %>
+    <% booking.reviews.each do |review| %>
+      <% sum_review += review.rating  %>
+      <% count_review += 1 %>
+    <% end %>
+  <% end %>
+<% end %>
+    <% prom_review = sum_review/ count_review %>
+    <%= prom_review.to_f.round(2) %>*
+
 <div id="map"
   style="width: 100%; height: 600px;"
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
-
-<p>Aquí va el promedio del rating</p>
 
 <p>Lista de servicios</p>
 
