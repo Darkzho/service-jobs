@@ -3,7 +3,7 @@
   <% @user.services.each do |u| %>
     <% u.bookings.each do |i| %>
       <% i.reviews.each do |e| %>
-        <li><%= current_user.first_name %>
+        <li><%= User.find(e.user_id).first_name %>
         <%= e.rating %>
         <%= e.content %></li>
       <% end %>

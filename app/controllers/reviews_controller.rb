@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     @review.booking = @booking
+    @review.user_id = current_user.id
     authorize @review
     if @review.save!
       redirect_to user_reviews_path(@booking.service.user_id)
