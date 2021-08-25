@@ -14,4 +14,8 @@ class BookingPolicy < ApplicationPolicy
   def status?
     record.user == user || record.service.user == user 
   end
+
+  def chat?
+    true
+  end
 end
