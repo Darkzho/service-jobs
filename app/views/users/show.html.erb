@@ -25,8 +25,13 @@
   
 <% booking_count = 0 %>
 <% @user.services.each do |service| %>
-  <% booking_count += service.bookings.count %>
+  <% service.bookings.each do |booking| %>
+    <% if booking.end_date == nil %>
+      <% booking_count += 1 %>
+    <% end %>
+  <% end %>
 <% end %>
+
 <%= link_to "#{booking_count}", bookings_path %> 
 
 

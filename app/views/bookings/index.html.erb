@@ -1,9 +1,14 @@
 <% @bookings.each do |booking| %><br>
-  <% if booking.service.user_id == current_user.id %>
-    <p> Servicio agendado por: <%= User.find(booking.user_id).first_name %></p>
-    <p> El Servicio pertenece a: <%= User.find(booking.service.user_id).first_name %></p>
-    <p> Nombre del servicio: <%= booking.service.title %></p>
-    <p> descripción del servicio: <%= booking.service.description %></p>
+  <% if booking.service.user_id == current_user.id && booking.end_date == nil%>
+    <p>Servicio agendado por: <%= User.find(booking.user_id).first_name %></p>
+    <p>El Servicio pertenece a: <%= User.find(booking.service.user_id).first_name %></p>
+    <p>Nombre del servicio: <%= booking.service.title %></p>
+    <p>descripción del servicio: <%= booking.service.description %></p>
     <p>Fecha de inicio: <%= booking.start_date %></p>
+    <p>Fecha de cierre: <%= booking.end_date %></p>
+    <%= simple_form_for (booking) do |f| %>
+      <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
+      <%= f.submit "Cerrar booking", class:"btn btn-primary pill" %>
+    <% end %>
   <% end %>
 <% end %>
