@@ -32,7 +32,9 @@
   <% end %>
 <% end %>
 
-<%= link_to "#{booking_count}", bookings_path %> 
+<% if @user == current_user && @user.owner %>
+  <%= link_to "#{booking_count}", bookings_path %>
+<% end %> 
 
 
 <p>Lista de servicios</p>
