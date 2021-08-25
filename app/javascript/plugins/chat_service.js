@@ -1,5 +1,6 @@
 const service = document.querySelector('#booking-id')
-const room = service.innerHTML;
+// const room = service.innerHTML;
+const room = 1000;
 const baseUrl = `https://wagon-chat.herokuapp.com/${room}/messages`;
 
 // const refreshBtn = document.querySelector('#refresh');
@@ -28,7 +29,7 @@ const postMessage = (msg) => {
     body: JSON.stringify(msg)
   })
     .then(response => response.json())
-    .then((_data) => {
+    .then((data) => {
       refreshChat();
     });
 };
@@ -41,10 +42,10 @@ form.addEventListener('submit', (event) => {
   postMessage(myMessage);
 });
 
-const refreshing = document.addEventListener("DOMContentLoaded", refreshChat);
+// const refreshing = document.addEventListener("DOMContentLoaded", refreshChat);
 
 
-export { refreshChat };
-export { postMessage };
-export { refreshing };
-export { form }
+// export { refreshChat };
+// export { postMessage };
+// export { refreshing };
+// export { form }
