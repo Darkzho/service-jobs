@@ -22,6 +22,18 @@
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
+  
+<% booking_count = 0 %>
+<% @user.services.each do |service| %>
+  <% service.bookings.each do |booking| %>
+    <% if booking.end_date == nil %>
+      <% booking_count += 1 %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to "#{booking_count}", bookings_path %> 
+
 
 <p>Lista de servicios</p>
 
