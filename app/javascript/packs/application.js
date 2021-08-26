@@ -28,9 +28,12 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete'; 
 import { initAutocomplete2 } from '../plugins/init_autocomplete'; 
 import { initFlatpickr } from '../plugins/flatpickr';
+import { initStarRating } from '../plugins/init_star_rating';
+// import { form } from '../plugins/chat_service';
+// import { refreshChat } from '../plugins/chat_service';
+// import { postMessage } from '../plugins/chat_service';
+// import { refreshing } from '../plugins/chat_service';
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -39,4 +42,11 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initAutocomplete2();
   initFlatpickr();
+  initStarRating();
+  // form();
+  // refreshChat();
+  // postMessage();
+  // refreshing;
 });
+
+import "controllers"

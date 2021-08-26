@@ -5,7 +5,9 @@
       <h2 class="card-title"><%= @service.title %></h4>
       <p class="card-text"><%= @service.description %></p>
       <p class="card-text"><strong>$ <%= number_with_delimiter(@service.price, :delimiter => '.')%></strong></p>
-      <%= link_to "Bookealo", new_service_booking_path(@service), class:"btn btn-primary" %>
+      <% if @service.user != current_user %>
+        <%= link_to "Bookealo", new_service_booking_path(@service), class:"btn btn-primary" %>
+      <% end %>
       <%= link_to "Profile", user_path(@user), class:"btn btn-success" %>
     </div>
   </div>
