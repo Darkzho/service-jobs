@@ -26,8 +26,4 @@ class BookingPolicy < ApplicationPolicy
   def order?
     true
   end
-
-  def historial
-    true
-  end
 end
