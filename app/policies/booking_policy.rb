@@ -22,4 +22,8 @@ class BookingPolicy < ApplicationPolicy
   def chat?
     true
   end
+
+  def order?
+    true
+  end
 end

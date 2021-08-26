@@ -10,14 +10,12 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
   end 
   resources :bookings, only: [:show] do
-    resources :reviews, only: [:new, :create]
-    %w(status).each do |route|
-      get route.to_sym, action: route.to_sym, as: route.to_sym
-      %w(chat).each do |r|
-        get r.to_sym, action: r.to_sym, as: r.to_sym
-      end
+    member do
+      get :status
+      get :chat
+      get :order
     end
+    resources :reviews, only: [:new, :create]
   end 
   resources :bookings, only: [:index, :edit, :update]
 end
-

@@ -15,7 +15,9 @@
               <%= current_user.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/bookings">Trabajos <span class="badge bg-danger">4</span></a></li>
+              <li><div class = "counter">
+                <span> </span>
+              </div></li>
               <li><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "dropdown-item" %></li>
               <li><%= link_to "Perfil", user_path(current_user), class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>

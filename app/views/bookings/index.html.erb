@@ -1,15 +1,7 @@
 <div class="container">
   <% @bookings.each do |booking| %>
-    <% if booking.service.user_id == current_user.id && booking.end_date == nil%>
-      <div class="card mt-3">
-        <p>Servicio agendado por: <%= User.find(booking.user_id).first_name %></p>
-        <p>El Servicio pertenece a: <%= User.find(booking.service.user_id).first_name %></p>
-        <p>Nombre del servicio: <%= booking.service.title %></p>
-        <p>descripción del servicio: <%= booking.service.description %></p>
-        <p>Fecha de inicio: <%= booking.start_date %></p>
-        <p>Fecha de cierre: <%= booking.end_date %></p>
-        <%= link_to "Status", booking_status_path(booking)%>
-      </div>
+    <% if booking.service.user_id == current_user.id && !booking.end_date %>
+      <%= render "details", booking: booking %>
     <% end %>
   <% end %>
 </div>

@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
 
     authorize @booking
     if @booking.save!
-      redirect_to booking_path(@booking)
+      redirect_to order_booking_path(@booking)
     else
       render :new
     end
@@ -48,14 +48,20 @@ class BookingsController < ApplicationController
     true
   end
 
+  # Rutas custom
   def status
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:id])
     authorize @booking
   end
 
   def chat
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:id])
     @user = current_user
+    authorize @booking
+  end
+
+  def order
+    @booking = Booking.find(params[:id])
     authorize @booking
   end
 
