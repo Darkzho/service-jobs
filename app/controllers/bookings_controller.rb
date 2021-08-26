@@ -1,21 +1,21 @@
 class BookingsController < ApplicationController
   def index
   end
-  
+
   def new
     @service = Service.find(params[:service_id])
     @booking = Booking.new
     @user = @service.user
-    authorize @booking   
+    authorize @booking
   end
 
-  def create 
+  def create
     @service = Service.find(params[:service_id])
     @booking = Booking.new(booking_params)
     @booking.service = @service
     @booking.user = current_user
-    @booking.start_date = Time.now 
-    @booking.end_date = Time.now 
+    @booking.start_date = Time.now
+    @booking.end_date = Time.now
     authorize @booking
     if @booking.save
       redirect_to service_path(@service)
@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
       render :edit
     end
   end
-  
+
   def show
   end
 
