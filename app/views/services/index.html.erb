@@ -21,7 +21,9 @@
           <h5 class="card-title"><%= service.title.capitalize %></h5>
           <p class="card-text"><%= service.description %></p>
           <div class="d-flex ">
-            <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
+            <% if service.user != current_user %>
+              <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
+            <% end %>
             <% if policy(service).edit? %>
               <%= link_to "Edit", edit_service_path(service.id), class:"text-warning text-decoration-none me-3" %>
             <% end %>
