@@ -19,6 +19,8 @@
           <% end %>
           <% if count_review != 0 %>
             <% prom_review = sum_review / count_review %>
+          <% else %>
+            <% prom_review = 0 %> 
           <% end %>
         <h5 class="card-text text-center"><%= link_to "#{prom_review.round(1)}", user_reviews_path(@user) %><i class="fas fa-star"></i></p>
       </div>
