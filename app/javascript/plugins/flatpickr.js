@@ -7,6 +7,7 @@ const initFlatpickr = () => {
     altFormat: "j F Y, h:i K",
     enableTime: true,
     dateFormat: "Y-m-d H:i:S",
+    minDate: "today",
     "locale": Spanish
   });
 }

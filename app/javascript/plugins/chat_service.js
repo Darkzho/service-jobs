@@ -1,4 +1,4 @@
-const service = document.querySelector('#booking-id')
+// const service = document.querySelector('#booking-id')
 // const room = service.innerHTML;
 const room = 1000;
 const baseUrl = `https://wagon-chat.herokuapp.com/${room}/messages`;
