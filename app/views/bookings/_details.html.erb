@@ -4,6 +4,7 @@
   <p>Nombre del servicio: <%= booking.service.title %></p>
   <p>descripción del servicio: <%= booking.service.description %></p>
   <p>Fecha de inicio: <%= booking.start_date %></p>
-  <p>Fecha de cierre: <%= booking.end_date %></p>
-  <%= link_to "Status", status_booking_path(booking)%>
+  <% if booking.end_date %>
+    <p>Fecha de termino: <%= booking.end_date %></p>
+  <% end %>
 </div>

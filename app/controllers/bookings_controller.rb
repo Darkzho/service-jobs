@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
+    @users = User.all
   end
 
   def new
@@ -48,7 +49,8 @@ class BookingsController < ApplicationController
     true
   end
 
-  # Rutas custom
+  # Routes custom
+
   def status
     @booking = Booking.find(params[:id])
     authorize @booking

@@ -15,9 +15,6 @@
               <%= current_user.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><div class = "counter">
-                <span> </span>
-              </div></li>
               <li><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "dropdown-item" %></li>
               <li><%= link_to "Perfil", user_path(current_user), class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>

@@ -5,24 +5,26 @@
         <img src="#" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
       </div>  
       <div class="card-body">
-        <h3 class="card-title text-center"><%= @user.first_name %> <%= @user.last_name %></h5>
-        <h6 class="card-text text-center"><%= @user.email %></p>
-          <% sum_review = 0 %>
-          <% count_review = 0 %>
-          <% @user.services.each do |service| %>
-            <% service.bookings.each do |booking| %>
-              <% booking.reviews.each do |review| %>
-                <% sum_review += review.rating.to_f  %>
+        <h3 class="card-title text-center"><%= @user.first_name %> <%= @user.last_name %></h3>
+        <h6 class="card-text text-center"><%= @user.email %></h6>
+        <% sum_review = 0 %>
+        <% count_review = 0 %>
+        <% @user.services.each do |service| %>
+          <% service.bookings.each do |booking| %>
+            <% booking.reviews.each do |review| %>
+              <% sum_review += review.rating.to_f  %>
                 <% count_review += 1 %>
-              <% end %>
             <% end %>
           <% end %>
-          <% if count_review != 0 %>
-            <% prom_review = sum_review / count_review %>
-          <% else %>
-            <% prom_review = 0 %> 
-          <% end %>
-        <h5 class="card-text text-center"><%= link_to "#{prom_review.round(1)}", user_reviews_path(@user) %><i class="fas fa-star"></i></p>
+        <% end %>
+        <% if count_review != 0 %>
+          <% prom_review = sum_review / count_review %>
+        <% else %>
+          <% prom_review = 0 %> 
+        <% end %>
+      <% if @user.owner %>
+        <h5 class="card-text text-center"><%= link_to "#{prom_review.round(1)}", user_reviews_path(@user) %><i class="fas fa-star"></i></h5>
+      <% end %>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Reseñas: <%= count_review %></li>
@@ -56,6 +58,8 @@
             </span>
           </span>
         </div>
+      <% else %>
+        <%= link_to "historial", bookings_path, class: "btn btn-success pill" %>
       <% end %>
     </div>
     <!---------------------------MAP--------------------------------->
@@ -67,7 +71,6 @@
       </div>
     </div>
   </div> 
-
   <div class="row">
     <p>Lista de servicios</p>
     <div class="container mt-3"> 
@@ -81,14 +84,11 @@
             <p class="card-text"><%= service.description %></p>
             <div class="d-flex ">
               <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
-
               <% if policy(service).edit? %>
                 <%= link_to "Edit", edit_service_path(service.id), class:"text-warning text-decoration-none me-3" %>
               <% end %>
-
               <% if policy(service).destroy? %>
                 <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"text-danger text-decoration-none" %></th>
-
               <% end %>
             </div>
           </div>
