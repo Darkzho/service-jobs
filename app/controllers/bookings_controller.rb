@@ -2,17 +2,19 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
   end
+
   def new
     @service = Service.find(params[:service_id])
     @booking = Booking.new
-    authorize @booking   
+    authorize @booking
   end
 
-  def create 
+  def create
     @service = Service.find(params[:service_id])
     @booking = Booking.new(booking_params)
     @booking.service = @service
     @booking.user = current_user
+
     authorize @booking
     if @booking.save!
       redirect_to booking_path(@booking)
@@ -35,7 +37,7 @@ class BookingsController < ApplicationController
       render :edit
     end
   end
-  
+
   def show
     @review = Review.new
     @booking = Booking.find(params[:id])
@@ -45,7 +47,7 @@ class BookingsController < ApplicationController
   def finished?
     true
   end
-  
+
   def status
     @booking = Booking.find(params[:booking_id])
     authorize @booking
@@ -56,9 +58,9 @@ class BookingsController < ApplicationController
     @user = current_user
     authorize @booking
   end
-  
+
   private
-  
+
   def booking_params
     params.require(:booking).permit(:address, :start_date, :end_date)
   end
