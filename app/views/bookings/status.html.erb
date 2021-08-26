@@ -1,0 +1,23 @@
+<div class="container mt-3">
+  <p>Informacion del booking</p>
+
+  <ul class="list-group">
+    <li class="list-group-item"><%= link_to "Contactar", booking_chat_path(@booking) %></li>
+    <li class="list-group-item"><a href="#">Datos del profesional</a></li>
+    
+    <li class="list-group-item"><a href="#">Detalles del sevicio</a></li>
+
+    <% if current_user == @booking.user && @booking.end_date != nil %>
+      <li class="list-group-item"><%= link_to "Calificar", new_booking_review_path(@booking) %></li>
+    <% end %>
+
+    <% if current_user == @booking.service.user %>
+      <li class="list-group-item">
+      <%= simple_form_for (@booking) do |f| %>
+        <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
+        <%= f.submit "Cerrar booking", class:"btn btn-primary pill" %>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

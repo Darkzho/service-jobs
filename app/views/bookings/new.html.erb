@@ -1,16 +1,25 @@
-<div class="container">
-  <ul>
-  <li><%= @service.title %></li>
-  <li><%= @user.first_name %> <%= @user.last_name %></li>
-  <li><%= @service.price %></li>
-  </ul>
-  <%= simple_form_for [@service, @booking] do |f| %>
-  <!--  <%= f.input :start_date, as: :string, label: 'Start date', input_html: {class: "datepicker", id: "range"} %> -->
-  <!--   <%= f.input :end_date, as: :string, label: 'End date', input_html: {class: "datepicker", id: "end_date"} %> -->
-    <%= f.submit "Confirmar", class:"btn btn-primary" %>
-  <% end %>
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header">
+      <h2><%= @service.title.capitalize %></h2>
+    </div>
+    <div class="card-body">
+      <h5>Ofrecido por <%= @service.user.first_name %> <%= @service.user.last_name %></h5>
+      <p class="card-text"><%= @service.description %></p>
+      <p class="card-text"><strong>Precio: $ <%= number_with_delimiter(@service.price, :delimiter => '.')%></strong></p>
+    </div>
+    <div class="card-footer">
+      <%= simple_form_for [@service, @booking] do |f| %>
+        <%= f.input :address,
+                      label: "¿Dónde necesitas el servicio?",
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "address", class: "pill" } %>
+        <%= f.input :start_date, label: "¿Cuándo necesitas el servicio?", as: :string, input_html: { class: "datepicker pill" } %>
+        <%= f.submit "Confirmar", class:"btn btn-primary pill" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
 
 

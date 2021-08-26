@@ -29,10 +29,11 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'autoprefixer-rails', '10.2.5'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 5.15.1'
 gem 'simple_form'
 gem 'pundit'
 gem 'geocoder'
+
 
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

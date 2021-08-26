@@ -5,6 +5,7 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
+@import "jquery-bar-rating/dist/themes/fontawesome-stars";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -13,3 +14,5 @@
 @import "pages/index";
 
 @import 'mapbox-gl/dist/mapbox-gl';
+@import "flatpickr/dist/flatpickr";
+

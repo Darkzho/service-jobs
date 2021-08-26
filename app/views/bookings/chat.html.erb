@@ -1,0 +1,30 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div id="chatroom" class="rounded">
+        <h1>Sala de chat</h1>
+
+        <p hidden id="booking-id"><%= @booking.id %></p>
+        <p hidden id="my-name"><%= @user.first_name %></p>
+
+        <div class="card text-dark bg-light mb-3">
+          <div class="card-body " id="messages">
+            <ul class="list unstyle chat-list" id="message-list">
+              <li><strong><%=@user.first_name %></strong>: Hola mundo! <span class="chat-date">(hace 10 minutos)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="my-3" action="#" id="comment-form">
+
+          <div class="form-group">
+            <input type="text" name="content" id="your-message" class="form-control pill" placeholder="Este es mi mensaje..">
+          </div>
+          <input type="submit" value="Send" class="btn btn-primary pill">
+        
+        </form>
+        <%= link_to "Volver", booking_status_path(@booking), class: "btn btn-secondary pill" %>
+      </div>
+    </div>
+  </div>
+</div>

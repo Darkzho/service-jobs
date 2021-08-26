@@ -14,10 +14,11 @@ User.destroy_all
 puts "Database cleaned"
 puts "Seeding"
 
-e = User.create(email: "etorres@mail.com", password: "123456", first_name: "Emmanuele", last_name: "Torres", address: "Puerto Montt")
-v = User.create(email: "vjara@mail.com", password: "123456", first_name: "Victor", last_name: "Jara", address: "Santiago")
-c = User.create(email: "ccisterna@mail.com", password: "123456", first_name: "Cristobal", last_name: "Cisterna", address: "Concepción")
-m = User.create(email: "mpizarro@mail.com", password: "123456", first_name: "Manuel", last_name: "Pizarro", address: "Los Lagos")
+e = User.create(email: "etorres@mail.com", password: "123456", first_name: "Emmanuele", last_name: "Torres", owner: true)
+v = User.create(email: "vjara@mail.com", password: "123456", first_name: "Victor", last_name: "Jara", owner: true)
+c = User.create(email: "ccisterna@mail.com", password: "123456", first_name: "Cristobal", last_name: "Cisterna", owner: true)
+m = User.create(email: "mpizarro@mail.com", password: "123456", first_name: "Manuel", last_name: "Pizarro", owner: true)
+f = User.create(email: "fake@mail.com", password: "123456", first_name: "fake", last_name: "user", owner: false)
 
 3.times do |a|
   a = Service.create(title: ["Reparación de cañerías", "Reparación de baño", "Instalación de calefont", "Instalacion de ducha"].sample,

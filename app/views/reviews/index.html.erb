@@ -1,0 +1,13 @@
+
+<ul>
+  <% @user.services.each do |u| %>
+    <% u.bookings.each do |i| %>
+      <% i.reviews.each do |e| %>
+        <li><%= User.find(e.user_id).first_name %>
+        <%= e.rating %>
+        <%= e.content %></li>
+      <% end %>
+    <% end %>
+  <% end %> 
+</ul>
+
