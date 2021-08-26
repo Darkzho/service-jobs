@@ -1,6 +1,33 @@
 <div class="container">
+
+  <% if current_user.owner  %>
+    <h1>Servicios abiertos</h1>
+      <% @bookings.each do |booking| %>
+        <% if booking.service.user_id == current_user.id && !booking.end_date %>
+          <%= render "details", booking: booking %>
+          <%= link_to "Status", status_booking_path(booking)%>
+        <% end %>
+      <% end %>
+    <hr/>
+      <h1>historial de servicio</h1>
+      <% @bookings.each do |booking| %>
+        <% if booking.service.user_id == current_user.id && booking.end_date %>
+          <%= render "details", booking: booking %>
+        <% end %>
+      <% end %>
+  <% end %>
+  <hr/>
+  <h1>Mis servicios abiertos</h1>
   <% @bookings.each do |booking| %>
-    <% if booking.service.user_id == current_user.id && !booking.end_date %>
+    <% if booking.user_id == current_user.id && !booking.end_date %>
+      <%= render "details", booking: booking %>
+      <%= link_to "Status", status_booking_path(booking)%>
+    <% end %>
+  <% end %>
+<hr/>
+  <h1>Mi historial de servicios</h1>
+  <% @bookings.each do |booking| %>
+    <% if booking.user_id == current_user.id && booking.end_date %>
       <%= render "details", booking: booking %>
     <% end %>
   <% end %>

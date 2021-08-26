@@ -48,7 +48,8 @@ class BookingsController < ApplicationController
     true
   end
 
-  # Rutas custom
+  # Routes custom
+
   def status
     @booking = Booking.find(params[:id])
     authorize @booking
