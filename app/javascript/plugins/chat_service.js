@@ -1,9 +1,9 @@
-const service = document.querySelector('#booking-id')
+// const service = document.querySelector('#booking-id')
 // const room = service.innerHTML;
 const room = 1000;
 const baseUrl = `https://wagon-chat.herokuapp.com/${room}/messages`;
 
-// const refreshBtn = document.querySelector('#refresh');
+const refreshBtn = document.querySelector('#refresh');
 const messages = document.querySelector('#message-list');
 const form = document.querySelector('#comment-form');
 const content = document.querySelector('#your-message');
@@ -34,18 +34,19 @@ const postMessage = (msg) => {
     });
 };
 
-// refreshBtn.addEventListener('click', refreshChat);
+refreshBtn.addEventListener('click', refreshChat);
 
-form.addEventListener('submit', (event) => {
+const formulario = () => {form.addEventListener('submit', (event) => {
   event.preventDefault();
   const myMessage = { author: name.innerHTML, content: content.value };
   postMessage(myMessage);
 });
+}
 
-// const refreshing = document.addEventListener("DOMContentLoaded", refreshChat);
+const refreshing = document.addEventListener("DOMContentLoaded", refreshChat);
 
 
-// export { refreshChat };
-// export { postMessage };
-// export { refreshing };
-// export { form }
+//export { refreshChat };
+//export { postMessage };
+//export { refreshing };
+//export { formulario }

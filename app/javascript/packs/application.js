@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 
 
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -25,15 +24,16 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initAutocomplete2 } from '../plugins/init_autocomplete';
 import { initFlatpickr } from '../plugins/flatpickr';
 import { initStarRating } from '../plugins/init_star_rating';
-// import { form } from '../plugins/chat_service';
-// import { refreshChat } from '../plugins/chat_service';
-// import { postMessage } from '../plugins/chat_service';
-// import { refreshing } from '../plugins/chat_service';
+//import { formulario } from '../plugins/chat_service';
+//import { refreshChat } from '../plugins/chat_service';
+//import { postMessage } from '../plugins/chat_service';
+//import { refreshing } from '../plugins/chat_service';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -44,10 +44,10 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete2();
   initFlatpickr();
   initStarRating();
-  // form();
-  // refreshChat();
-  // postMessage();
-  // refreshing;
+  //formulario();
+  //refreshChat();
+  //postMessage();
+  //refreshing;
 });
 
 import "controllers"
