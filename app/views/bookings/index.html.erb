@@ -1,5 +1,4 @@
 <div class="container">
-
   <% if current_user.owner  %>
     <h1>Servicios abiertos</h1>
       <% @bookings.each do |booking| %>
@@ -8,7 +7,6 @@
           <%= link_to "Status", status_booking_path(booking)%>
         <% end %>
       <% end %>
-    <hr/>
       <h1>historial de servicio</h1>
       <% @bookings.each do |booking| %>
         <% if booking.service.user_id == current_user.id && booking.end_date %>
@@ -16,7 +14,6 @@
         <% end %>
       <% end %>
   <% end %>
-  <hr/>
   <h1>Mis servicios abiertos</h1>
   <% @bookings.each do |booking| %>
     <% if booking.user_id == current_user.id && !booking.end_date %>
@@ -24,11 +21,18 @@
       <%= link_to "Status", status_booking_path(booking)%>
     <% end %>
   <% end %>
-<hr/>
   <h1>Mi historial de servicios</h1>
   <% @bookings.each do |booking| %>
+  <% reviewers = [] %>
     <% if booking.user_id == current_user.id && booking.end_date %>
       <%= render "details", booking: booking %>
+        <% booking.reviews.each do |review| %>
+          <% reviewers << review.user_id %>
+        <% end %>
+          <% if reviewers.include?(current_user.id) %>
+          <% else %>
+            <%= link_to "Review", new_booking_review_path(booking.id) %>
+          <% end %>
+      <% end %>
     <% end %>
-  <% end %>
 </div>
