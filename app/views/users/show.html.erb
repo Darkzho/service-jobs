@@ -26,6 +26,8 @@
         <h5 class="card-text text-center"><%= link_to "#{prom_review.round(1)}", user_reviews_path(@user) %><i class="fas fa-star"></i></h5>
       <% end %>
       </div>
+    <!-- info botton bookins -->
+    <% if  @user == current_user && @user.owner %> 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Reseñas: <%= count_review %></li>
           <% booking_count = 0 %>
@@ -47,6 +49,7 @@
           <% end %>
         <li class="list-group-item">Servicios: <%= @services.count %></li>
       </ul>
+      <% end %>
       <% if @user == current_user && @user.owner %>
         <div class="card-body d-flex justify-content-around">
           <%= link_to "Agregar servicio", new_service_path(@service), class: "btn btn-primary pill" %>
