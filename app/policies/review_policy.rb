@@ -4,7 +4,7 @@ class ReviewPolicy < ApplicationPolicy
   end
   
   def create?
-    true
+    record.booking.service.user != user
   end
 
   def index?
