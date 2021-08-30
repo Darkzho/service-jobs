@@ -9,9 +9,9 @@
           <p>Descripción del servicio: <%= @booking.service.description %></p>
           <h5>Técnico: <%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %> </h5>
           <h5>Cliente: <%= User.find(@booking.user_id).first_name %> <%= User.find(@booking.user_id).last_name %> </h5>
-          <h6>Servicio agendado para el <%= @booking.start_date.strftime("%d-%m-%Y a las %k:%m %p") %> </h6>
+          <h6>Servicio agendado para el <%= @booking.start_date.strftime("%d-%m-%Y a las %k:%M %p") %> </h6>
           <% if @booking.end_date %>
-            <h6>Servicio concluído el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%m %p") %></h6>
+            <h6>Servicio concluído el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></h6>
           <% else %>
             <h6>Servicio activo</h6>
           <% end %>

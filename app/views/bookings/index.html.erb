@@ -39,7 +39,7 @@
                     <p><%= booking.service.description %></p>
                   </div>
                   <div class="col-6">
-                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%m %p")%></p>
+                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
                     <p>Servicio activo</p>
                     <a class="btn btn-primary pill" href="<%= status_booking_path(booking) %>">Status</a>
                   </div>
@@ -61,8 +61,8 @@
                       <p><%= booking.service.description %></p>
                     </div>
                     <div class="col-6">
-                      <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%m %p")%></p>
-                      <p>Servicio terminado el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%m %p") %></p>
+                      <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
+                      <p>Servicio terminado el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></p>
                       <a class="btn btn-primary pill disabled" href="<%= status_booking_path(booking) %>" aria-disabled="true" >Status</a>
                     </div>
                   </div>
@@ -87,7 +87,7 @@
                     <p><%= booking.service.description %></p>
                   </div>
                   <div class="col-6">
-                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%m %p")%></p>
+                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
                     <p>Servicio activo</p>
                     <a class="btn btn-primary pill" href="<%= status_booking_path(booking) %>">Status</a>
                     <a class="btn btn-secondary pill disabled ms-2" href="<%= new_booking_review_path(booking.id) %> aria-disabled="true"">Review</a>
@@ -110,8 +110,8 @@
                     <p><%= booking.service.description %></p>
                   </div>
                   <div class="col-6">
-                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%m %p")%></p>
-                    <p>Servicio terminado el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%m %p") %></p>
+                    <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
+                    <p>Servicio terminado el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></p>
                     <a class="btn btn-primary pill disabled" href="<%= status_booking_path(booking) %>" aria-disabled="true" >Status</a>
                     <% booking.reviews.each do |review| %>
                       <% reviewers << review.user_id %>
@@ -119,7 +119,7 @@
                     <% if reviewers.include?(current_user.id) %>
                       <a class="btn btn-secondary pill disabled ms-2" href="<%= new_booking_review_path(booking.id) %> aria-disabled="true"">Review</a>
                     <% else %>
-                      <a class="btn btn-secondary pill ms-2" href="<%= new_booking_review_path(booking.id) %>">Review</a>
+                      <a class="btn btn-success pill ms-2" href="<%= new_booking_review_path(booking.id) %>">Review</a>
                     <% end %>
                   </div>
                 </div>
