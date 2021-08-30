@@ -1,27 +1,55 @@
 <div class="container mt-3">
-  <p>Informacion del booking</p>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body row align-items-start">
+          <div class="col">
+          <p>Servicio #<%= @booking.id %></p>
+          <h2><%= @booking.service.title %></h2>
+          <p>Descripción del servicio: <%= @booking.service.description %></p>
+          <h5>Técnico: <%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %> </h5>
+          <h5>Cliente: <%= User.find(@booking.user_id).first_name %> <%= User.find(@booking.user_id).last_name %> </h5>
+          <h6>Servicio agendado para el <%= @booking.start_date.strftime("%d-%m-%Y a las %k:%M %p") %> </h6>
+          <% if @booking.end_date %>
+            <h6>Servicio concluído el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></h6>
+          <% else %>
+            <h6>Servicio activo</h6>
+          <% end %>
+          </div>
+          <div class="col">
+            <div class="mb-2">
+              <div id="map"
+                style="width: 100%; height: 300px;"
+                data-markers="<%= @markers.to_json %>"
+                data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
+            </div>
+          </div>
+        </div>  
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= link_to "Contactar", chat_booking_path(@booking) %></li>
+          <% if current_user != @booking.service.user %>
+          <li class="list-group-item"><%= link_to "Datos del profesional", user_path(@booking.service.user) %></li>
+          <% end %>
+          
+          <% if current_user != @booking.service.user %>
+            <li class="list-group-item"><%= link_to "Detalles del servicio", booking_path(@booking) %></li>
+          <% end %>
 
-  <ul class="list-group">
-    <li class="list-group-item"><%= link_to "Contactar", chat_booking_path(@booking) %></li>
-    <% if current_user != @booking.service.user %>
-    <li class="list-group-item"><%= link_to "Datos del profesional", user_path(@booking.service.user) %></li>
-    <% end %>
-    
-    <% if current_user != @booking.service.user %>
-      <li class="list-group-item"><%= link_to "Detalles del servicio", booking_path(@booking) %></li>
-    <% end %>
+          <% if current_user == @booking.user && @booking.end_date != nil %>
+            <li class="list-group-item"><%= link_to "Calificar", new_booking_review_path(@booking) %></li>
+          <% end %>
 
-    <% if current_user == @booking.user && @booking.end_date != nil %>
-      <li class="list-group-item"><%= link_to "Calificar", new_booking_review_path(@booking) %></li>
-    <% end %>
-
-    <% if current_user == @booking.service.user %>
-      <li class="list-group-item">
-      <%= simple_form_for (@booking) do |f| %>
-        <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
-        <%= f.submit "Cerrar booking", class:"btn btn-primary pill" %>
-      <% end %>
-      </li>
-    <% end %>
-  </ul>
+          <% if current_user == @booking.service.user %>
+            <div class="card-body">
+              <%= simple_form_for (@booking) do |f| %>
+                <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
+                <%= f.submit "Cerrar booking", class:"btn btn-primary pill" %>
+              <% end %>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
