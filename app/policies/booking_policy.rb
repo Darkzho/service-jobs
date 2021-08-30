@@ -26,4 +26,5 @@ class BookingPolicy < ApplicationPolicy
   def order?
     true
   end
+
 end

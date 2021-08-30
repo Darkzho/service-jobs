@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
     #@services = policy_scope(Service).order(created_at: :desc)
     if params[:query].present?
       @query = params[:query]
-      @services = Service.where("category LIKE ? OR description LIKE ? OR title LIKE ?", @query, @query, @query)
+      @services = Service.where("title LIKE ? OR category LIKE ? OR description LIKE ?", "%" + @query + "%", @query, "%" + @query + "%") 
     else  
       @services = Service.all
       authorize @services
