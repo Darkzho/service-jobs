@@ -52,6 +52,7 @@ class BookingsController < ApplicationController
 
   def status
     @booking = Booking.find(params[:id])
+    @markers = { lat: @booking.geocode[0], lng: @booking.geocode[1] }
     authorize @booking
   end
 

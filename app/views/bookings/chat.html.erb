@@ -16,14 +16,13 @@
         </div>
 
         <form class="my-3" action="#" id="comment-form">
-
           <div class="form-group">
             <input type="text" name="content" id="your-message" class="form-control pill" placeholder="Este es mi mensaje..">
           </div>
           <input type="submit" value="Send" class="btn btn-primary pill">
-        
+          <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill" %>
+
         </form>
-        <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill" %>
       </div>
     </div>
   </div>
