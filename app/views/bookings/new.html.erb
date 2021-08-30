@@ -15,7 +15,8 @@
                           required: true,
                           autofocus: true,
                           input_html: { autocomplete: "address", class: "pill" } %>
-            <%= f.input :start_date, label: "¿Cuándo necesitas el servicio?", as: :string, input_html: { class: "datepicker pill" } %>
+            <%= f.input :start_date, label: "¿Cuándo necesitas el servicio? (Los servicios se agendan con un minimo de 24 horas de anticipación)", as: :string, input_html: { class: "datepicker pill" } %>
+            <%= render 'payment' %>
             <%= f.submit "Confirmar", class:"btn btn-primary pill" %>
           <% end %>
         </div>
