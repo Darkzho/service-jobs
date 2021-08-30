@@ -38,12 +38,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show
-    @review = Review.new
-    @booking = Booking.find(params[:id])
-    authorize @booking
-  end
-
   def finished?
     true
   end

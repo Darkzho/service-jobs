@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body row align-items-start">
           <div class="col">
-          <p>Servicio #<%= @booking.id %></p>
+          <p>Número de orden: <%= @booking.id %></p>
           <h2><%= @booking.service.title %></h2>
           <p>Descripción del servicio: <%= @booking.service.description %></p>
           <h5>Técnico: <%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %> </h5>
@@ -30,10 +30,6 @@
           <li class="list-group-item"><%= link_to "Contactar", chat_booking_path(@booking) %></li>
           <% if current_user != @booking.service.user %>
           <li class="list-group-item"><%= link_to "Datos del profesional", user_path(@booking.service.user) %></li>
-          <% end %>
-          
-          <% if current_user != @booking.service.user %>
-            <li class="list-group-item"><%= link_to "Detalles del servicio", booking_path(@booking) %></li>
           <% end %>
 
           <% if current_user == @booking.user && @booking.end_date != nil %>
