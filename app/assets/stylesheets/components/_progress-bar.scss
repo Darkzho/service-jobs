@@ -1,0 +1,24 @@
+.review-wapper {
+  display: flex; 
+  gap: 5px;
+  margin-top: 60px;
+}
+
+.container-stars div{
+  margin-top: 5px;
+
+}
+
+.container-graficos {
+  width: 800px;
+  .progress {
+  height: 24px;
+  margin-top: 5px;
+  }
+}
+
+.container-rating-number {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
