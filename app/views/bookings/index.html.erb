@@ -83,6 +83,7 @@
                 <div class="row">
                   <div class="col-6">
                     <h4><%= booking.service.title.capitalize %></h4>
+                    <h6>Número de orden: <%= booking.id %></h6>
                     <p>Técnico: <%= User.find(booking.service.user_id).first_name %> <%= User.find(booking.service.user_id).last_name %></p>
                     <p><%= booking.service.description %></p>
                   </div>
