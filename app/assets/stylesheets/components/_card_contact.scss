@@ -1,6 +1,6 @@
 .card_contact {
 
-  height: 190px;
+  height: 140px;
   width: 316px;
   background: white;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -8,7 +8,7 @@
   margin: 10px;
   align-items: center;
   border-radius: 5px;
-  object-fit: contain;
+  padding: 15px;
 }
 
 .card_contact img {
@@ -16,14 +16,13 @@
   width: 100px;
   height: 100px;
   border-radius: 10px;
-  padding: 10px;
+  object-fit: cover;
 }
 
 .card_contact h5 {
   font-size: 16px;
   font-weight: bold;
   margin: 0px;
-  padding: 7px;
 }
 
 .card_contact h6 {
@@ -32,7 +31,6 @@
   opacity: .9;
   margin-bottom: 0;
   margin-top: 0px;
-  padding: 7px;
 }
 
 .flex-container {
@@ -54,6 +52,14 @@
 .card img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
 }
 // .card {
 //   margin: 0 0.5em;
@@ -79,4 +85,8 @@
   .card img {
     height: 11em;
   }
+}
+.btn-primary {
+  margin-top: 13px;
+  width: 80%
 }
