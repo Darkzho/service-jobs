@@ -45,19 +45,18 @@
   align-items: center;
 }
 
-.cards-wrapper {
+#cards-wrapper-home {
   display: flex;
   justify-content: center;
 }
-.card img {
+#card-home img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.card-body {
+#card-body-home {
   height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
 }
@@ -79,14 +78,10 @@
   border-radius: 50%;
   top: 50%;
   transform: translateY(-20%);
-
 }
+
 @media (min-width: 768px) {
-  .card img {
+  #card-home img {
     height: 11em;
   }
-}
-.btn-primary {
-  margin-top: 13px;
-  width: 80%
 }
