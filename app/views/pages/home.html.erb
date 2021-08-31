@@ -9,8 +9,8 @@
 </div>
 
 
-<h2>Categorias principales</h2>
 <div class="category container">
+  <h2 class="my-3">Categorias principales</h2>
   <div class="home-buttons">
     <div class="flex-container row row-cols-2 row-cols-md-3 row-cols-lg-6 g-2">
       <div class="circle_container col"><a class="circle_button" href="services?query=gasfiteria" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1538474705339-e87de81450e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">Gasfiter</a></div>
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<h3>Te sugerimos</h3>
+<h3 class="container">Te sugerimos</h3>
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="flex-container">
@@ -31,12 +31,12 @@
     <div class="carousel-inner">
       <!-- CAROUSEL ITEM 1 -->
       <div class="carousel-item active">
-        <div class="cards-wrapper">
+        <div class="cards-wrapper" id="cards-wrapper-home">
           <% @top_services.each_with_index do |service, i| %>
             <%if i <= 3  %>
               <div class="card_contact">
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80" alt="...">
-                <div class="card-body">
+                <div class="card-body" id="card-body-home">
                   <h5 class="card-title"><%= service.user.first_name %></h5>
                   <p class="card-text"><%= service.category %></p>
                   <h6 class="card-address"><i class="fas fa-map-marker-alt"></i> <%= service.user.address %> </h6>
@@ -49,12 +49,12 @@
       </div>
 
       <div class="carousel-item">
-        <div class="cards-wrapper">
+        <div class="cards-wrapper" id="cards-wrapper-home">
           <% @top_services.each_with_index do |service, i| %>
             <%if i > 3  %>
               <div class="card_contact">
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80" alt="...">
-                <div class="card-body">
+                <div class="card-body" id="card-body-home">
                   <h5 class="card-title"><%= service.user.first_name %></h5>
                   <p class="card-text"><%= service.category %></p>
                   <h6 class="card-address"><i class="fas fa-map-marker-alt"></i> <%= service.user.address %> </h6>
