@@ -2,7 +2,9 @@
   <div class="row">
     <div class="card col-12 col-sm-4">
       <div class="d-flex mt-3 justify-content-center">
-        <img src="#" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
+          <img src="<%= cl_image_path @user.photo.key, height: 300, crop: :fill %>" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
+        <div class="card-category rounded-3 shadow-sm" style="background-image: url('<%= cl_image_path @user.photo.key, height: 300, crop: :fill %>')"> 
+      </div>
       </div>  
       <div class="card-body">
         <h3 class="card-title text-center"><%= @user.first_name %> <%= @user.last_name %></h3>

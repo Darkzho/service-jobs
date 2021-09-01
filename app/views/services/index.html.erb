@@ -13,6 +13,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= service.title.capitalize %></h5>
           <p class="card-text"><%= service.description %></p>
+          <img src="<%= cl_image_path service.photo.key, height: 100, crop: :fill %>" alt="Nes">
           <div class="d-flex ">
             <% if service.user != current_user %>
               <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
