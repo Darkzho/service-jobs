@@ -14,6 +14,8 @@
       </div>
       <div class="col-12 col-lg-12">
         <%= f.input :price, label: "¿Qué precio cobrarás por este servicio?", input_html: { class: 'form-control pill'}  %>
+      <div class="col-12 col-lg-12">
+        <%= f.input :photo, as: :file, label: "Agrega una foto de tu servicio" %>
       </div>
       <div class="col-12 col-lg-12">
         <%= f.submit "Guardar", class:"btn btn-primary pill" %>

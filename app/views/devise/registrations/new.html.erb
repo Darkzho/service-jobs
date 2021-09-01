@@ -29,6 +29,12 @@
                       autofocus: true,
                       input_html: { autocomplete: "address", class: "pill" } %>
         </div>
+         <div class="col-12 col-lg-12">
+          <%= f.input :photo,
+                      as: :file,
+                      required: false,
+                      input_html: { autocomplete: "new-photo" } %>  
+        </div>
         <div class="col-12 col-lg-6">
           <%= f.input :password,
                       required: true,
