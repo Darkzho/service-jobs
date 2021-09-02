@@ -2,49 +2,123 @@
   <div class="row justify-content-center">
     <div class="col-8">
       <div class="card">
+        <div class="p-3 d-flex justify-content-between"> 
+          <p>Número de orden: <%= @booking.id %></p>
+          <% if @booking.end_date %>
+            <button type="button" class="btn btn-lg btn-secondary btn-sm pill mb-2" disabled>Servicio concluído</button>
+          <% else %>
+            <button type="button" class="btn btn-lg btn-primary btn-sm pill mb-2" disabled>Servicio activo</button>
+          <% end %>
+        </div>
         <div class="card-body row align-items-start">
           <div class="col">
-          <p>Número de orden: <%= @booking.id %></p>
-          <h2><%= @booking.service.title %></h2>
-          <p>Descripción del servicio: <%= @booking.service.description %></p>
-          <h5>Técnico: <%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %> </h5>
-          <h5>Cliente: <%= User.find(@booking.user_id).first_name %> <%= User.find(@booking.user_id).last_name %> </h5>
-          <h6>Servicio agendado para el <%= @booking.start_date.strftime("%d-%m-%Y a las %k:%M %p") %> </h6>
-          <% if @booking.end_date %>
-            <h6>Servicio concluído el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></h6>
-          <% else %>
-            <h6>Servicio activo</h6>
-          <% end %>
+            <h4><strong><%= @booking.service.title %></strong></h4>
+            <p>Descripción del servicio: <%= @booking.service.description %></p>
+            <h6>Servicio agendado para el <%= @booking.start_date.strftime("%d-%m-%Y a las %k:%M %p") %> </h6>
+            <% if @booking.end_date %>
+              <h6>Servicio concluído el: <%= @booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></h6>
+            <% end %>
           </div>
-          <div class="col">
-            <div class="mb-2">
-              <div id="map"
-                style="width: 100%; height: 300px;"
-                data-markers="<%= @markers.to_json %>"
-                data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+          <div class="col d-flex align-items-start flex-column bd-highlight">
+            <div class="col mb-4 pt-1">
+              <h6>Técnico: <%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %> </h6>
+              <h6>Cliente: <%= User.find(@booking.user_id).first_name %> <%= User.find(@booking.user_id).last_name %> </h6>
+            </div>
+            <div class="d-flex align-items-end px-3">
+              <% if @booking.end_date == nil %>
+                <%= link_to "Contactar", chat_booking_path(@booking), class: "btn btn-primary pill me-2" %>
+              <% end %>
+              <% if current_user == @booking.user && @booking.end_date != nil %>
+                <%= link_to "Calificar", new_booking_review_path(@booking), class: "btn btn-primary pill me-2" %>
+              <% end %>
+              <% if current_user == @booking.service.user %>
+                <%= simple_form_for (@booking) do |f| %>
+                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
+                  <%= f.submit "Cerrar booking", class:"btn btn-primary pill " %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Ubicación del servicio
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div id="map"
+                  style="width: 100%; height: 300px;"
+                  data-markers="<%= @markers.to_json %>"
+                  class="rounded"
+                  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                </div>
               </div>
             </div>
           </div>
-        </div>  
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= link_to "Contactar", chat_booking_path(@booking) %></li>
           <% if current_user != @booking.service.user %>
-          <li class="list-group-item"><%= link_to "Datos del profesional", user_path(@booking.service.user) %></li>
-          <% end %>
-
-          <% if current_user == @booking.user && @booking.end_date != nil %>
-            <li class="list-group-item"><%= link_to "Calificar", new_booking_review_path(@booking) %></li>
-          <% end %>
-
-          <% if current_user == @booking.service.user %>
-            <div class="card-body">
-              <%= simple_form_for (@booking) do |f| %>
-                <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
-                <%= f.submit "Cerrar booking", class:"btn btn-primary pill" %>
-              <% end %>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Información del técnico
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="row d-flex align-items-center">
+                  <div class="card col-5 align-items-center border-0">
+                    <div class="d-flex mt-2 justify-content-center">
+                      <img src="#" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
+                    </div>
+                    <h4><%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %></h4>
+                    <h6><%= User.find(@booking.service.user_id).email %></h6>
+                  </div>
+                  <div class="card col-5 border-0">
+                    <ul class="list-group list-group-flush">
+                      <% sum_review = 0 %>
+                      <% count_review = 0 %>
+                      <% User.find(@booking.service.user_id).services.each do |service| %>
+                        <% service.bookings.each do |booking| %>
+                          <% booking.reviews.each do |review| %>
+                            <% sum_review += review.rating.to_f  %>
+                            <% count_review += 1 %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <% if count_review != 0 %>
+                        <li class="list-group-item">Calificación: <%= prom_review = sum_review / count_review %> <i class="fas fa-star"></i></li>
+                      <% else %>
+                        <li class="list-group-item">Calificación: - </li> 
+                      <% end %>
+                        <li class="list-group-item">Reseñas recibidas: <%= count_review %></li>
+                          <% booking_count = 0 %>
+                          <% User.find(@booking.service.user_id).services.each do |service| %>
+                            <% service.bookings.each do |booking| %>
+                              <% if booking.end_date != nil %>
+                                <% booking_count += 1 %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <li class="list-group-item">Trabajos realizados: <%= booking_count %></li>
+                          <% open_bookings = 0 %>
+                          <% User.find(@booking.service.user_id).services.each do |service| %>
+                            <% service.bookings.each do |booking| %>
+                              <% if booking.end_date == nil %>
+                                <% open_bookings += 1 %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <li class="list-group-item">Servicios ofrecidos: <%= User.find(@booking.service.user_id).services.count %></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           <% end %>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
