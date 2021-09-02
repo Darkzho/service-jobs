@@ -14,6 +14,7 @@ User.destroy_all
 puts "Database cleaned"
 puts "Seeding"
 
+# User seed 
 file1 = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1622559610/cwgknbzxa3fio0ulgxod.jpg')
 e = User.create(email: "etorres@mail.com", password: "123456", first_name: "Emmanuele", last_name: "Torres", address: "puerto montt", owner: true)
 e.photo.attach(io: file1, filename: 'nes.png', content_type: 'image/png')
@@ -44,6 +45,7 @@ f.photo.attach(io: file5, filename: 'nes.png', content_type: 'image/png')
               a.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 end           
 
+# Services seed
  3.times do |b|
   file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
   b = Service.create(title: ["Reparación de muebles", "Construccion de comedor", "Reparacion estructural de casa", "Recambio de revestimiento"].sample,
@@ -83,5 +85,6 @@ end
               user_id: m.id)
               g.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 end 
+
 puts "Finishing"
 
