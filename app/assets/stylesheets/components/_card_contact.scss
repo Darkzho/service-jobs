@@ -1,7 +1,7 @@
 .card_contact {
 
   height: 140px;
-  width: 316px;
+  width: 300px;
   background: white;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   display: flex;
@@ -15,7 +15,7 @@
   height: 100%;
   width: 100px;
   height: 100px;
-  border-radius: 10px;
+  border-radius: 5px;
   object-fit: cover;
 }
 
@@ -59,6 +59,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
+  flex-direction:column;
+}
+
+#card-info{
+  margin-bottom: 4px;
 }
 // .card {
 //   margin: 0 0.5em;
@@ -85,3 +90,4 @@
     height: 11em;
   }
 }
+
