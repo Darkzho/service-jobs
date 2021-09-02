@@ -113,7 +113,7 @@
                   <div class="col-6">
                     <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
                     <p>Servicio terminado el: <%= booking.end_date.strftime("%d-%m-%Y a las %k:%M %p") %></p>
-                    <a class="btn btn-primary pill disabled" href="<%= status_booking_path(booking) %>" aria-disabled="true" >Status</a>
+                    <a class="btn btn-primary pill " href="<%= status_booking_path(booking) %>">Status</a>
                     <% booking.reviews.each do |review| %>
                       <% reviewers << review.user_id %>
                     <% end %>
