@@ -1,28 +1,30 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="col-6">
-      <div id="chatroom" class="rounded">
-        <h1>Sala de chat</h1>
+    <div class="col-8">
+      <div class="card p-3">
+        <div id="chatroom" class="rounded">
+          <h2>Sala de chat</h2>
 
-        <p hidden id="booking-id"><%= @booking.id %></p>
-        <p hidden id="my-name"><%= @user.first_name %></p>
+          <p hidden id="booking-id"><%= @booking.id %></p>
+          <p hidden id="my-name"><%= @user.first_name %></p>
 
-        <div class="card text-dark bg-light mb-3">
-          <div class="card-body " id="messages">
-            <ul class="list unstyle chat-list" id="message-list">
-              <li><strong><%=@user.first_name %></strong>: Hola mundo! <span class="chat-date">(hace 10 minutos)</span></li>
-            </ul>
+          <div class="card text-dark bg-light my-3">
+            <div class="card-body " id="messages">
+              <ul class="list unstyle chat-list" id="message-list">
+                <li><strong><%=@user.first_name %></strong>: Hola mundo! <span class="chat-date">(hace 10 minutos)</span></li>
+              </ul>
+            </div>
           </div>
+
+          <form class="my-3" action="#" id="comment-form">
+            <div class="form-group">
+              <input type="text" name="content" id="your-message" class="form-control pill" placeholder="Este es mi mensaje..">
+            </div>
+            <input type="submit" value="Enviar" class="btn btn-primary pill me-2">
+            <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill" %>
+
+          </form>
         </div>
-
-        <form class="my-3" action="#" id="comment-form">
-          <div class="form-group">
-            <input type="text" name="content" id="your-message" class="form-control pill" placeholder="Este es mi mensaje..">
-          </div>
-          <input type="submit" value="Send" class="btn btn-primary pill">
-          <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill" %>
-
-        </form>
       </div>
     </div>
   </div>

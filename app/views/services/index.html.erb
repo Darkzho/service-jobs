@@ -24,7 +24,24 @@
             <div class="card-body-info-service col-4">
               <div class="card-body-info-service-owner d-flex align-items-center gap-3 mt-2">
                 <img class="rounded-circle" src="<%= cl_image_path service.user.photo.key, height: 45, crop: :fill %>" alt="Nes">
-                <p class="card-text"><%= service.user.first_name %> <%= service.user.last_name %></p>
+                <div class="card-body-info-service-owner-details d-flex flex-column align-items-center">
+                  <span class="card-text"><%= service.user.first_name %> <%= service.user.last_name %></span>
+                  <% sum_review = 0 %>
+                  <% count_review = 0 %>
+                  <% User.find(service.user_id).services.each do |ser| %>
+                    <% ser.bookings.each do |booking| %>
+                      <% booking.reviews.each do |review| %>
+                        <% sum_review += review.rating.to_f  %>
+                        <% count_review += 1 %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% if count_review != 0 %>
+                    <span><%= prom_review = sum_review / count_review %> <i class="fas fa-star"></i></span>
+                  <% else %>
+                    </span><%= prom_review = 0 %> <i class="fas fa-star"></i></span> 
+                  <% end %>
+                </div>
               </div>
               <div class="d-flex mt-3">
                 <% if service.user != current_user %>
