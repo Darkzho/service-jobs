@@ -87,8 +87,9 @@
                           <% end %>
                         <% end %>
                       <% end %>
+                      <% prom_review = sum_review / count_review  %>
                       <% if count_review != 0 %>
-                        <li class="list-group-item">Calificación: <%= prom_review = sum_review / count_review %> <i class="fas fa-star"></i></li>
+                        <li class="list-group-item">Calificación: <%= prom_review.round(1) %> <i class="fas fa-star"></i></li>
                       <% else %>
                         <li class="list-group-item">Calificación: - </li> 
                       <% end %>
