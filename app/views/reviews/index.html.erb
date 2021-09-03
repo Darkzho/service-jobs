@@ -36,7 +36,7 @@
   <div class="row">
     <div class="card col-12 col-sm-4">
       <div class="d-flex justify-content-center">
-        <img src="#" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
+        <img class="rounded-circle mt-4" src="<%= cl_image_path @user.photo.key, height: 150, width: 150, crop: :fill %>" alt="Nes">
       </div>  
       <div class="card-body">
         <h3 class="card-title text-center"><%= @user.first_name %> <%= @user.last_name %></h3>
@@ -64,27 +64,27 @@
         </div>
         <div class="container-graficos">
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_one_porce %>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_two_porce %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_three_porce %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" role="progressbar" style="width: <%= rating_five_porce %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: <%= rating_four_porce %>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_five_porce %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" role="progressbar" style="width: <%= rating_three_porce %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= rating_two_porce %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= rating_one_porce %>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
         <div class="container-rating-number">
-          <span><%= rating_one %></span>
-          <span><%= rating_three %></span>
-          <span><%= rating_four %></span>
           <span><%= rating_five %></span>
+          <span><%= rating_four %></span>
+          <span><%= rating_three %></span>
           <span><%= rating_two %></span>
+          <span><%= rating_one %></span>
         </div>
       </div>
     </div>
@@ -95,10 +95,14 @@
     <% service.bookings.each do |booking| %>
       <% booking.reviews.each do |review| %>
         <div class="card">
-          <div class="card-body">
-            <%= User.find(review.user_id).first_name %>
-            <%= review.rating %>
-            <%= review.content %>
+          <div class="card-body d-flex gap-3 align-items-center">
+            <img class="rounded-circle" src="<%= cl_image_path  User.find(review.user_id).photo.key, height: 45, crop: :fill %>" alt="Nes">
+            <div class="card-body-reviewer">
+              <span>Puntuación: <%= review.rating %> <i class="fas fa-star"></i></span>
+              <div class="card-body-reviewer-review ">
+                <span><%= User.find(review.user_id).first_name %> escribío "<span><%= review.content %></span>"</span>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
