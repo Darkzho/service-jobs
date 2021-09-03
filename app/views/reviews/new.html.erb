@@ -1,20 +1,24 @@
-<div class="container mt-3">
-  <div class="a">
-    <h2>Califica el servicio recibido</h2>
-    <%= simple_form_for [ @booking, @review ] do |f| %>
-    <%= f.input :content,
-                  label: "Escribe una reseña",
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "content" } %>
-    <%= f.input :rating,
-                  as: :select,
-                  collection: (1..5),
-                  required: true,
-                  label: "¿Qué nota le pondrías al técnico?",
-                  autofocus: true,
-                  input_html: { id: "review_rating" } %>
-    <%= f.submit "Confirmar", class:"btn btn-primary" %>
-    <% end %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="card p-3 col-lg-8 col-md-10 col-12 shadow-lg">
+      <div class="row">
+        <h2>Califica el servicio recibido</h2>
+        <%= simple_form_for [ @booking, @review ] do |f| %>
+        <%= f.input :content,
+                      label: "Escribe una reseña",
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "content" } %>
+        <%= f.input :rating,
+                      as: :select,
+                      collection: (1..5),
+                      required: true,
+                      label: "¿Qué nota le pondrías al técnico?",
+                      autofocus: true,
+                      input_html: { id: "review_rating" } %>
+        <%= f.submit "Confirmar", class:"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
