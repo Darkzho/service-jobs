@@ -5,26 +5,25 @@
 <% rating_four = 0 %>
 <% rating_five = 0 %>
 
-  <% @user.services.each do |service| %>
-    <% service.bookings.each do |booking| %>
-      <% booking.reviews.each do |review| %>
-        <% review_total += 1 %>
-        <% case review.rating %>
-          <% when 1 %>
-          <% rating_one += 1 %>
-          <% when 2 %>
-          <% rating_two += 1 %>
-          <% when 3 %>
-          <% rating_three += 1 %>
-          <% when 4 %>
-          <% rating_four += 1 %>
-          <% when 5 %>
-          <% rating_five += 1 %>
-        <% end %>
+<% @user.services.each do |service| %>
+  <% service.bookings.each do |booking| %>
+    <% booking.reviews.each do |review| %>
+      <% review_total += 1 %>
+      <% case review.rating %>
+        <% when 1 %>
+        <% rating_one += 1 %>
+        <% when 2 %>
+        <% rating_two += 1 %>
+        <% when 3 %>
+        <% rating_three += 1 %>
+        <% when 4 %>
+        <% rating_four += 1 %>
+        <% when 5 %>
+        <% rating_five += 1 %>
       <% end %>
     <% end %>
-  <% end %> 
-</div>
+  <% end %>
+<% end %> 
 
 <% rating_one_porce = rating_one.to_f / review_total * 100 %>
 <% rating_two_porce = rating_two.to_f / review_total * 100 %>
