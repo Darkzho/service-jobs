@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   def index
     #@services = policy_scope(Service).order(created_at: :desc)
     if params[:query].present?
-      @query = params[:query]
+      @query = params[:query].downcase
       @services = Service.where("title LIKE ? OR category LIKE ? OR description LIKE ?", "%" + @query + "%", @query, "%" + @query + "%") 
     else  
       @services = Service.all

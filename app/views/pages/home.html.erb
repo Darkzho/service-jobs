@@ -1,7 +1,6 @@
 <div class="banner d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1531053326607-9d349096d887?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80);">
   <div class="container">
-    <h1><strong>Services&Jobs</strong></h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tristique enim. Nunc malesuada...</p>
+    <h2 class="mb-5"><strong>Encuentra tu servicio</strong></h2>
     <div class="search-banner">
       <%= render 'services/searcher' %>
     </div>
@@ -10,7 +9,7 @@
 
 
 <div class="category container">
-  <h2 class="my-3">Categorias principales</h2>
+  <h2 class="my-5">Categorias principales</h2>
   <div class="home-buttons">
     <div class="flex-container row row-cols-2 row-cols-md-3 row-cols-lg-6 g-2">
       <div class="circle_container col"><a class="circle_button txt-btn shadow-lg" href="services?query=gasfiteria" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1538474705339-e87de81450e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">Gasfiter</a></div>
@@ -35,10 +34,10 @@
           <% @top_services.each_with_index do |service, i| %>
             <%if i <= 3  %>
               <div class="card_contact">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80" alt="...">
+                <img src="<%= cl_image_path service.user.photo.key, height: 100, crop: :fill %>" alt="...">
                 <div class="card-body" id="card-body-home">
                   <h5 class="card-title" id="card-info"><%= service.user.first_name %></h5>
-                  <p class="card-text" id="card-info"><%= service.category %></p>
+                  <p class="card-text" id="card-info"><%= service.category.capitalize %></p>
                   <h6 class="card-address" id="card-info"><i class="fas fa-map-marker-alt"></i> <%= service.user.address %> </h6>
                 </div>
               </div>
@@ -46,16 +45,16 @@
           <% end %>
         </div>
       </div>
-
+      <!-- CAROUSEL ITEM 1 -->
       <div class="carousel-item">
         <div class="cards-wrapper" id="cards-wrapper-home">
           <% @top_services.each_with_index do |service, i| %>
             <%if i > 3  %>
               <div class="card_contact">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80" alt="...">
+                <img src="<%= cl_image_path service.user.photo.key, height: 100, crop: :fill %>" alt="...">
                 <div class="card-body row g-0"  id="card-body-home">
                   <h5 class="card-title" id="card-info"><%= service.user.first_name %></h5>
-                  <p class="card-text" id="card-info"><%= service.category %></p>
+                  <p class="card-text" id="card-info"><%= service.category.capitalize %></p>
                   <h6 class="card-address" id="card-info"><i class="fas fa-map-marker-alt"></i> <%= service.user.address %> </h6>
                 </div>
               </div>
