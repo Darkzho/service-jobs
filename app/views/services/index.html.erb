@@ -37,7 +37,8 @@
                     <% end %>
                   <% end %>
                   <% if count_review != 0 %>
-                    <span><%= prom_review = sum_review / count_review %> <i class="fas fa-star"></i></span>
+                    <% prom_review = sum_review / count_review %>
+                    <span> <%= prom_review.round(1)%> <i class="fas fa-star"></i></span>
                   <% else %>
                     <span><%= prom_review = 0 %> <i class="fas fa-star"></i></span> 
                   <% end %>

@@ -1,6 +1,12 @@
 class ReviewsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
+    @reviews = Review.all
+    if @user.owner
+      authorize @reviews
+    else
+      redirect_to root_path
+    end
   end
 
   def new

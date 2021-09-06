@@ -31,7 +31,7 @@
               <% if current_user == @booking.user && @booking.end_date != nil %>
                 <%= link_to "Calificar", new_booking_review_path(@booking), class: "btn btn-primary pill me-2" %>
               <% end %>
-              <% if current_user == @booking.service.user %>
+              <% if current_user == @booking.service.user && @booking.end_date == nil %>
                 <%= simple_form_for (@booking) do |f| %>
                   <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
                   <%= f.submit "Cerrar booking", class:"btn btn-primary pill " %>

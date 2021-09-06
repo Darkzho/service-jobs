@@ -5,19 +5,22 @@
 }
 
 .container-stars div{
-  margin-top: 5px;
+  margin: 2px;
 }
 
 .container-graficos {
-  width: 800px;
   .progress {
-  height: 24px;
-  margin-top: 5px;
+  height: 1.5rem;
+  margin: 2px;
   }
 }
 
 .container-rating-number {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
+}
+
+.fa-star {
+  color: #FFC10F;
 }

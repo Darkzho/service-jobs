@@ -4,11 +4,13 @@
 <% rating_three = 0 %>
 <% rating_four = 0 %>
 <% rating_five = 0 %>
+<% sum_review = 0 %>
 
 <% @user.services.each do |service| %>
   <% service.bookings.each do |booking| %>
     <% booking.reviews.each do |review| %>
       <% review_total += 1 %>
+      <% sum_review += review.rating.to_f  %>
       <% case review.rating %>
         <% when 1 %>
         <% rating_one += 1 %>
@@ -23,7 +25,7 @@
       <% end %>
     <% end %>
   <% end %>
-<% end %> 
+<% end %>
 
 <% rating_one_porce = rating_one.to_f / review_total * 100 %>
 <% rating_two_porce = rating_two.to_f / review_total * 100 %>
@@ -32,81 +34,105 @@
 <% rating_five_porce = rating_five.to_f / review_total * 100 %>
 
 <div class="container mt-3">
-  <div class="row">
-    <div class="card col-12 col-sm-4">
-      <div class="d-flex justify-content-center">
-        <img class="rounded-circle mt-4" src="<%= cl_image_path @user.photo.key, height: 150, width: 150, crop: :fill %>" alt="Nes">
-      </div>  
-      <div class="card-body">
-        <h3 class="card-title text-center"><%= @user.first_name %> <%= @user.last_name %></h3>
-        <p class="card-title text-center">Reseñas: <%= review_total %></p>
+  <div class="row justify-content-center">
+    <div class="card p-3 col-lg-8 col-md-10 col-12 shadow-lg mb-3">
+      <div class="d-flex alig-items-start">
+        <%= link_to "Volver", user_path(@user), class: "btn btn-secondary btn-sm pill mb-2"%>
       </div>
-    </div>
-    <div class="card col-sm-8">
-      <div class="review-wapper">
-        <div class="container-stars">
-          <div>
-            <span>5 <i class="fas fa-star"></i></span>
-          </div>
-          <div>
-            <span>4 <i class="fas fa-star"></i></span>
-          </div>
-          <div>
-            <span>3 <i class="fas fa-star"></i></span>
-          </div>
-          <div>
-            <span>2 <i class="fas fa-star"></i></span>
-          </div>
-          <div>
-            <span>1 <i class="fas fa-star"></i></span>
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-6 col-md-6 col-12">
+          <div class="card border-0">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="rounded-circle mt-4" src="<%= cl_image_path @user.photo.key, height: 150, width: 150, crop: :fill %>" alt="Nes">
+            </div>  
+            <h3 class="text-center"><%= @user.first_name %> <%= @user.last_name %></h3>
           </div>
         </div>
-        <div class="container-graficos">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_five_porce %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_four_porce %>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_three_porce %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_two_porce %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= rating_one_porce %>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        <div class="container-rating-number">
-          <span><%= rating_five %></span>
-          <span><%= rating_four %></span>
-          <span><%= rating_three %></span>
-          <span><%= rating_two %></span>
-          <span><%= rating_one %></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-<div class="container">
-  <% @user.services.each do |service| %>
-    <% service.bookings.each do |booking| %>
-      <% booking.reviews.each do |review| %>
-        <div class="card">
-          <div class="card-body d-flex gap-3 align-items-center">
-            <img class="rounded-circle" src="<%= cl_image_path  User.find(review.user_id).photo.key, height: 45, crop: :fill %>" alt="Nes">
-            <div class="card-body-reviewer">
-              <span>Puntuación: <%= review.rating %> <i class="fas fa-star"></i></span>
-              <div class="card-body-reviewer-review ">
-                <span><%= User.find(review.user_id).first_name %> escribío "<span><%= review.content %></span>"</span>
+        <div class="col-lg-6 col-md-6 col-12">
+          <div class="row">
+            <div class="card border-0">
+              <h6>Reseñas: <%= review_total %></h6>
+              <% if review_total != 0 %>
+                <% prom_review = sum_review / review_total %>
+                <h6>Promedio reviews: <%= prom_review.round(1) %> <i class="fas fa-star"></i></h6>
+              <% else %>
+                <% prom_review = 0 %> 
+                <h6>Promedio reviews: 0</h6>
+              <% end %>
+              <div class="d-flex justify-content-start align-items-center">
+                <div class="container-stars">
+                  <div>
+                    <span>5 <i class="fas fa-star"></i></span>
+                  </div>
+                  <div>
+                    <span>4 <i class="fas fa-star"></i></span>
+                  </div>
+                  <div>
+                    <span>3 <i class="fas fa-star"></i></span>
+                  </div>
+                  <div>
+                    <span>2 <i class="fas fa-star"></i></span>
+                  </div>
+                  <div>
+                    <span>1 <i class="fas fa-star"></i></span>
+                  </div>
+                </div>
+                <div class="col-8 container-graficos">
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= rating_five_porce %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= rating_four_porce %>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= rating_three_porce %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= rating_two_porce %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: <%= rating_one_porce %>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="container-rating-number">
+                  <div><span><%= rating_five %></span></div>
+                  <div><span><%= rating_four %></span></div>
+                  <div><span><%= rating_three %></span></div>
+                  <div><span><%= rating_two %></span></div>
+                  <div><span><%= rating_one %></span></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>      
-      
-      
+      </div>
+    </div>
+    <div class="card p-3 col-lg-8 col-md-10 col-12 shadow-lg">
+      <div class="row mt-2">
+        <% @user.services.each do |service| %>
+          <% service.bookings.each do |booking| %>
+            <% booking.reviews.each do |review| %>
+              <div class="card border-0">
+                <div class="card-body d-flex gap-4 align-items-center">
+                  <div class="d-flex align-items-center">
+                    <img class="rounded-circle" src="<%= cl_image_path  User.find(review.user_id).photo.key, height: 45, crop: :fill %>" alt="Nes">
+                  </div>
+                  <div class="card-body-reviewer">
+                    <%= User.find(review.user_id).first_name %>
+                    <div class="card-body-reviewer-review ">
+                      <small>Puntuación: <%= review.rating %> <i class="fas fa-star"></i></small><br>
+                      <i class="fas fa-quote-left mr-2"></i><small class="flex-grow-1"><%= review.content %></small>
+                      <!-- <span><%= User.find(review.user_id).first_name %> escribió <i class="fas fa-quote-left"></i> <span><%=  %></span></span> -->
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>  
+    </div>
+  </div>
+</div>
+
