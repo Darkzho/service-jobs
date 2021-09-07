@@ -82,7 +82,7 @@
   height: 10vh;
   border-radius: 50%;
   top: 50%;
-  transform: translateY(-20%);
+  transform: translateY(-50%);
 }
 
 @media (min-width: 768px) {
@@ -91,3 +91,7 @@
   }
 }
 
+#card-link {
+  text-decoration: none;
+  color: #22242B;
+}

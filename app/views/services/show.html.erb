@@ -10,9 +10,9 @@
         </div>
         <div class="card-body-service-show-buttons mt-3">
           <% if @service.user != current_user %>
-            <%= link_to "Bookealo", new_service_booking_path(@service), class:"btn btn-primary" %>
+            <%= link_to "Agendar", new_service_booking_path(@service), class:"btn btn-primary pill me-2" %>
           <% end %>
-          <%= link_to "Profile", user_path(@user), class:"btn btn-success" %>
+          <%= link_to "Perfil", user_path(@user), class:"btn btn-success pill" %>
         </div>
       </div>
       <div class="card-body-service-show-photo col-4">

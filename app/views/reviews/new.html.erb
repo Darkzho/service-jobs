@@ -4,11 +4,6 @@
       <div class="row">
         <h2>Califica el servicio recibido</h2>
         <%= simple_form_for [ @booking, @review ] do |f| %>
-        <%= f.input :content,
-                      label: "Escribe una reseña",
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "content" } %>
         <%= f.input :rating,
                       as: :select,
                       collection: (1..5),
@@ -16,6 +11,11 @@
                       label: "¿Qué nota le pondrías al técnico?",
                       autofocus: true,
                       input_html: { id: "review_rating" } %>
+        <%= f.input :content,
+                      label: "Escribe una reseña (opcional)",
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "content" } %>
         <%= f.submit "Confirmar", class:"btn btn-primary" %>
         <% end %>
       </div>

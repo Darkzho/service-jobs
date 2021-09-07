@@ -1,6 +1,9 @@
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="card p-3 col-lg-8 col-md-10 col-12 shadow-lg">
+      <div class="d-flex alig-items-start">
+        <%= link_to "Volver", root_path , class: "btn btn-secondary btn-sm pill mb-2"%>
+      </div>
       <div class="row">
       <!-- card de info -->
         <div class="card col-lg-5 col-12 border-0" id="profile-info">
@@ -76,7 +79,7 @@
             <div class="card-body d-flex justify-content-around">
               <span><%= link_to "Agregar servicio", new_service_path(@service), class: "btn btn-primary pill btn-sm" %></span>
               <span><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "btn btn-warning pill btn-sm" %></span>
-              <span class="position-relative"><%= link_to "Bookings", bookings_path, class: "btn btn-success pill btn-sm" %>
+              <span class="position-relative"><%= link_to "Agenda", bookings_path, class: "btn btn-success pill btn-sm" %>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   <%= open_bookings %>
                   <span class="visually-hidden">unread messages</span>

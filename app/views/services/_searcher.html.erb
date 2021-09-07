@@ -1,8 +1,9 @@
-  <form class="row g-2">
-    <div class="col-12 col-lg-10">
-      <input class="form-control form-control-lg me-2 pill home-searcher" type="search" name="query" placeholder="Encuentra tu servicio" aria-label="Search" value="<%= params[:query] %>">
-    </div>
-    <div class="col-auto">
-      <button class="btn btn-outline-warning btn-lg pill btn-home" type="submit"><i class="fas fa-search"></i> Buscar</button>
-    </div>
-  </form>
+<form class="row g-3 justify-content-center mt-3">
+  <div class="col-sm-8">
+    <input type="search" name="query" class="form-control form-input-large pill" placeholder="¿Qué mantencion deseas realizar?" aria-label="Search" value="<%= params[:query] %>">
+    
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary form-input-large pill"><i class="fas fa-search"></i> Buscar</button>
+  </div>
+</form>
