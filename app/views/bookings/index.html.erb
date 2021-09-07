@@ -91,7 +91,6 @@
                     <p>Servicio agendado para el <%= booking.start_date.strftime("%d-%m-%Y a las %k:%M %p")%></p>
                     <p>Servicio activo</p>
                     <a class="btn btn-primary pill" href="<%= status_booking_path(booking) %>">Status</a>
-                    <a class="btn btn-secondary pill disabled ms-2" href="<%= new_booking_review_path(booking.id) %> aria-disabled="true"">Review</a>
                   </div>
                 </div>
               </div>
@@ -131,5 +130,5 @@
       </div>
     </div>
   </div>
-  <%= link_to "Volver a inicio", root_path, class: "btn btn-warning pill  mt-2" %>
+  <%= link_to "Volver", user_path(current_user) , class: "btn btn-warning pill  mt-2" %>
 </div>
