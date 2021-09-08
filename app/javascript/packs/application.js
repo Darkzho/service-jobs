@@ -31,6 +31,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initAutocomplete2 } from '../plugins/init_autocomplete';
 import { initFlatpickr } from '../plugins/flatpickr';
 import { initStarRating } from '../plugins/init_star_rating';
+import { initTyped } from '../plugins/init_typed'
 // import { form } from '../plugins/chat_service';
 // import { refreshChat } from '../plugins/chat_service';
 // import { postMessage } from '../plugins/chat_service';
@@ -45,6 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete2();
   initFlatpickr();
   initStarRating();
+  initTyped();
   // form();
   // refreshChat();
   // postMessage();

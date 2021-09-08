@@ -1,7 +1,9 @@
 <div class="header d-flex justify-content-center align-items-center">
   <div class="container">
-    <h2 class="text-center text-white">Encuentra el servicio que necesites para tu próximo proyecto.</h2>
-    <h4 class="text-center text-white my-3">Tenemos a disposición más de 200 profesionales y técnicos en tu cuidad.</p>
+    <p class="text-center text-white fs-2">Encuentra el servicio que necesites para tu próximo proyecto.</p>
+    <div class="typed d-flex justify-content-center align-items-center">
+      <span class="typed-js text-white fs-5 my-3"></span>
+    </div>
     <%= render 'services/searcher' %>
   </div>
 </div>
@@ -11,13 +13,25 @@
     <div class="col-12">
       <h2>Categorias principales</h2>
       <div class="row">
-        <div class="d-flex col-12 mt-3">
-          <div class="col"><a class="circle_button txt-btn" href="services?query=gasfiteria" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1538474705339-e87de81450e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">Gasfiter</a></div>
-          <div class="col"><a class="circle_button txt-btn" href="services?query=electricidad" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://cdn.pixabay.com/photo/2017/09/16/14/33/electrician-2755682_960_720.jpg')">Electricidad</a></div>
-          <div class="col"><a class="circle_button txt-btn" href="services?query=servicio técnico" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1580706483913-b6ea7db483a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=937&q=80')">Servicio técnico</a></div>
-          <div class="col"><a class="circle_button txt-btn" href="services?query=carpinteria" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1544164560-adac3045edb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=354&q=80')">Carpinteria </a></div>
-          <div class="col"><a class="circle_button txt-btn" href="services?query=pintura" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1621685682093-3b8016dcb57d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80')">Pintura </a></div>
-          <div class="col"><a class="circle_button txt-btn" href="services?query=limpieza" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">Limpieza </a></div>
+        <div class="categories d-flex col-12 col-sm-2 mt-3">
+          <a class="text-decoration-none" href="services?query=gasfiteria">
+            <div class="circle-card lh-sm shadow rounded-circle" id="gasf">Gasfitería</div>
+          </a>
+          <a class="text-decoration-none" href="services?query=electricidad">
+            <div class="circle-card lh-sm shadow rounded-circle" id="elec">Electricidad</div>
+          </a>
+          <a class="text-decoration-none" href="services?query=servicio técnico">
+            <div class="circle-card lh-sm shadow rounded-circle" id="serv">Servicio<br>Técnico</div>
+          </a>
+          <a class="text-decoration-none" href="services?query=carpintería">
+            <div class="circle-card lh-sm shadow rounded-circle" id="carp">Carpintería</div>
+          </a>
+          <a class="text-decoration-none" href="services?query=pintura">
+            <div class="circle-card lh-sm shadow rounded-circle" id="pint">Pintura</div>
+          </a>
+          <a class="text-decoration-none" href="services?query=limpieza">
+            <div class="circle-card lh-sm shadow rounded-circle" id="limp">Limpieza</div>
+          </a>
         </div>
       </div>
     </div>
