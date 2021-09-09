@@ -1,0 +1,37 @@
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.img-service {
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-product h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.vertical {
+  border-left: 1px solid #ebebeb;
+  height: 200px;
+}
+
+.card-body-info-service-owner {
+  width: 150px;
+}

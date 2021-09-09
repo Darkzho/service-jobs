@@ -6,3 +6,36 @@
 .form-input-large {
   height: calc(1.5em + 1rem + 5px) !important;
 }
+
+.btn-primary {
+  color: white !important;
+  background-color: #2C3A6E !important;
+  border-color: #2C3A6E !important;
+}
+
+.btn-primary:hover {
+  background-color: #202a4f !important;
+  border-color: #202a4f !important;
+}
+
+.btn-warning {
+  color: white !important;
+  background-color: #FDC521 !important;
+  border-color: #FDC521 !important;
+}
+
+.btn-warning:hover {
+  background-color: #a98415 !important;
+  border-color: #a98415 !important;
+}
+
+.btn-danger {
+  color: white !important;
+  background-color: #22242B !important;
+  border-color: #22242B !important;
+}
+
+.btn-danger:hover {
+  background-color: black !important;
+  border-color: black !important;
+}

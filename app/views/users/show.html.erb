@@ -37,7 +37,7 @@
           <% if @user.owner %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"></li>
-              <li class="list-group-item">Reseñas: <%= count_review %></li>
+              <li class="list-group-item">Evaluaciones recibidas: <%= count_review %></li>
                 <% booking_count = 0 %>
                 <% @user.services.each do |service| %>
                   <% service.bookings.each do |booking| %>
@@ -55,7 +55,7 @@
                     <% end %>
                   <% end %>
                 <% end %>
-              <li class="list-group-item">Servicios: <%= @services.count %></li>
+              <li class="list-group-item">Servicios ofrecidos: <%= @services.count %></li>
               <li class="list-group-item"></li>
             </ul>
           <!-- falta una condicion si es current_user pero no owner-->
@@ -77,9 +77,8 @@
           <% end %>
           <% if @user == current_user && @user.owner %>
             <div class="card-body d-flex justify-content-around">
-              <span><%= link_to "Agregar servicio", new_service_path(@service), class: "btn btn-primary pill btn-sm" %></span>
-              <span><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "btn btn-warning pill btn-sm" %></span>
-              <span class="position-relative"><%= link_to "Agenda", bookings_path, class: "btn btn-success pill btn-sm" %>
+              <span><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "btn btn-warning pill" %></span>
+              <span class="position-relative"><%= link_to "Agenda", bookings_path, class: "btn btn-primary pill" %>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   <%= open_bookings %>
                   <span class="visually-hidden">unread messages</span>
@@ -88,8 +87,8 @@
             </div>
           <% elsif @user == current_user %>
             <div class="card-body d-flex justify-content-around">
-              <span><%= link_to "Agenda", bookings_path, class: "btn btn-primary pill btn-sm" %></span>
-              <span><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "btn btn-warning pill btn-sm" %></span>
+              <span><%= link_to "Agenda", bookings_path, class: "btn btn-primary pill" %></span>
+              <span><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "btn btn-warning pill" %></span>
             </div>
           <% end %>
         </div>
@@ -103,35 +102,44 @@
           </div>
         </div>
       </div>
-      <hr>
+    </div>
+    <div class="p-3 col-lg-8 col-md-10 col-12">
       <!-- servicios -->
-      <div class="row">
-        <div class="card col-12 border-0">
-          <% if @user.owner %>
-          <h4>Servicios ofrecidos</h4>
+      <% if @user.owner %>
+        <div class="row">
+          <div class="card col-12 pt-3 border-0">
+            <% if @user == current_user %>
+              <div class="d-flex justify-content-between mb-3">
+                <h4>Mis servicios ofrecidos</h4>
+                <span><%= link_to "+ Nuevo servicio", new_service_path(@service), class: "btn btn-primary pill" %></span>
+              </div>
+            <% else %>
+              <h4 class="mb-3">Servicios ofrecidos</h4>
+            <% end %>
             <% @services.each do |service| %>
-              <div class="card mb-2">
-                <div class="card-header">
-                  <%= service.category.capitalize %>
+              <div class="card-product d-flex bd-highlight mb-3 rounded-3 shadow-sm">
+                <img class="img-service bd-highlight me-3" src="<%= cl_image_path service.photo.key%>">
+                <div class="card-product-infos bd-highlight d-flex justify-content-center flex-column">
+                  <p><%= service.category.capitalize %></p>
+                  <h4><strong><%= service.title.capitalize %></strong></h4>
+                  <h5><i class="fas fa-dollar-sign"></i> <%= service.price %></h5>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title"><%= service.title.capitalize %></h5>
-                  <p class="card-text"><%= service.description %></p>
-                  <div class="d-flex ">
-                    <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
-                    <% if policy(service).edit? %>
-                      <%= link_to "Edit", edit_service_path(service.id), class:"text-warning text-decoration-none me-3" %>
-                    <% end %>
-                    <% if policy(service).destroy? %>
-                      <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"text-danger text-decoration-none" %></th>
-                    <% end %>
-                  </div>
+                <div class="card-controls bd-highlight ms-auto d-flex flex-column bd-highlight me-3 justify-content-center">
+                  <% if service.user != current_user %>
+                    <%= link_to 'Mostrar mas', service_path(service.id), class: "btn btn-primary btn-lg pill bd-highlight" %>
+                  <% end %>
+                  <% if policy(service).edit? %>
+                    <%= link_to "Edit", edit_service_path(service.id), class:"btn btn-warning pill mb-2 bd-highlight" %>
+                  <% end %>
+                  <% if policy(service).destroy? %>
+                    <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger pill bd-highlight" %></th>
+                  <% end %>
                 </div>
               </div>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

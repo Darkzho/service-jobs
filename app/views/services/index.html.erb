@@ -1,63 +1,62 @@
 <div class="container">
-  <!-- Barra de búsqueda de servicios -->
-  <div class="container-searchers mt-5">
-    <%= render 'searcher' %>
-  </div>
+  <div class="row">
+    <!-- Barra de búsqueda de servicios -->
+    <div class="container-searchers mt-3">
+      <%= render 'searcher' %>
+    </div>
     <div class="container d-flex justify-content-between mt-4">
-      <h2><%= @services.count %> Resultados encontrados para <%= @query %></h2>
+      <% if @query %>
+        <h2><strong><%= @services.count %> </strong>resultados encontrados para <strong><%= @query %></strong></h2>
+      <% else %>
+        <h2><strong><%= @services.count %></strong> resultados encontrados</h2>
+      <% end %>
     </div>
     <div class="mt-3"> 
       <% @services.each do |service| %>
-        <div class="card mb-1">
-          <div class="card-header">
-            <%= service.category.capitalize %>
-          </div>
-          <div class="card-body d-flex gap-5 row">
-            <div class="card-body-info col-4">
-              <h5 class="card-title"><%= service.title.capitalize %></h5>
-              <p class="card-text"><%= service.description %></p>
-              <p class="card-text"><i class="fas fa-dollar-sign"></i> <%= service.price %></p>
+        <% if service.user != current_user %>
+          <div class="card-product d-flex bd-highlight mb-3 rounded-3 shadow-sm">
+            <img class="img-service bd-highlight me-3" src="<%= cl_image_path service.photo.key%>">
+            <div class="card-product-infos bd-highlight d-flex justify-content-center flex-column">
+              <p><%= service.category.capitalize %></p>
+              <h4><strong><%= service.title.capitalize %></strong></h4>
+              <h5><i class="fas fa-dollar-sign"></i> <%= service.price %></h5>
             </div>
-            <div class="col-3">  
-              <img src="<%= cl_image_path service.photo.key, height: 100, crop: :fill %>" alt="Nes">
+            <div class="card-controls bd-highlight ms-auto d-flex flex-column bd-highlight me-3 justify-content-center">
+              <% if service.user != current_user %>
+                <%= link_to 'Mostrar mas', service_path(service.id), class: "btn btn-primary btn-lg pill bd-highlight" %>
+              <% end %>
+              <% if policy(service).edit? %>
+                <%= link_to "Edit", edit_service_path(service.id), class:"btn btn-warning pill mb-2 bd-highlight" %>
+              <% end %>
+              <% if policy(service).destroy? %>
+                <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger pill bd-highlight" %></th>
+              <% end %>
             </div>
-            <div class="card-body-info-service col-4">
-              <div class="card-body-info-service-owner d-flex align-items-center gap-3 mt-2">
-                <img class="rounded-circle" src="<%= cl_image_path service.user.photo.key, height: 45, crop: :fill %>" alt="Nes">
-                <div class="card-body-info-service-owner-details d-flex flex-column align-items-center">
-                  <span class="card-text"><%= service.user.first_name %> <%= service.user.last_name %></span>
-                  <% sum_review = 0 %>
-                  <% count_review = 0 %>
-                  <% User.find(service.user_id).services.each do |ser| %>
-                    <% ser.bookings.each do |booking| %>
-                      <% booking.reviews.each do |review| %>
-                        <% sum_review += review.rating.to_f  %>
-                        <% count_review += 1 %>
-                      <% end %>
+            <div class="vertical"></div>
+            <div class="card-body-info-service-owner d-flex align-items-center justify-content-center flex-column bd-highlight">
+              <img class="rounded-circle" src="<%= cl_image_path service.user.photo.key, height: 45, crop: :fill %>" alt="Nes">
+              <div class="card-body-info-service-owner-details d-flex flex-column align-items-center">
+                <span class="card-text"><%= service.user.first_name %> <%= service.user.last_name %></span>
+                <% sum_review = 0 %>
+                <% count_review = 0 %>
+                <% User.find(service.user_id).services.each do |ser| %>
+                  <% ser.bookings.each do |booking| %>
+                    <% booking.reviews.each do |review| %>
+                      <% sum_review += review.rating.to_f  %>
+                      <% count_review += 1 %>
                     <% end %>
                   <% end %>
-                  <% if count_review != 0 %>
-                    <% prom_review = sum_review / count_review %>
-                    <span> <%= prom_review.round(1)%> <i class="fas fa-star"></i></span>
-                  <% else %>
-                    <span><%= prom_review = 0 %> <i class="fas fa-star"></i></span> 
-                  <% end %>
-                </div>
-              </div>
-              <div class="d-flex mt-3">
-                <% if service.user != current_user %>
-                  <%= link_to 'Mostrar mas', service_path(service.id), class: "text-decoration-none me-3" %>
                 <% end %>
-                <% if policy(service).edit? %>
-                  <%= link_to "Edit", edit_service_path(service.id), class:"text-warning text-decoration-none me-3" %>
-                <% end %>
-                <% if policy(service).destroy? %>
-                  <%= link_to "Borrar", service_path(service.id), method: :delete, data: { confirm: "Are you sure?" }, class:"text-danger text-decoration-none" %></th>
+                <% if count_review != 0 %>
+                  <% prom_review = sum_review / count_review %>
+                  <span> <%= prom_review.round(1)%> <i class="fas fa-star"></i></span>
+                <% else %>
+                  <span><%= prom_review = 0 %> <i class="fas fa-star"></i></span> 
                 <% end %>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

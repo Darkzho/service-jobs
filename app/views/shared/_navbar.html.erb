@@ -11,13 +11,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="<%= root_path %>" style="color: #22242B"><i class="fas fa-home fa-lg"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= services_path %>" style="color: #22242B"><i class="fas fa-search fa-lg"></i></a>
-        </li>
         <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= root_path %>">Home</i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= services_path %>">Servicios</i></a>
+        </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.email %>
@@ -25,6 +25,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><%= link_to "Editar perfil", edit_user_registration_path(@user), class: "dropdown-item" %></li>
               <li><%= link_to "Perfil", user_path(current_user), class: "dropdown-item" %></li>
+              <li><%= link_to "Agenda", bookings_path, class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
