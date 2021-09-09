@@ -34,7 +34,7 @@
               <% if current_user == @booking.service.user && @booking.end_date == nil %>
                 <%= simple_form_for (@booking) do |f| %>
                   <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
-                  <%= f.submit "Cerrar booking", class:"btn btn-primary pill " %>
+                  <%= f.submit "Cerrar booking", class:"btn btn-primary pill me-2" %>
                 <% end %>
               <% end %>
               <%= link_to "Agenda", bookings_path, class: "btn btn-warning pill mt-2" %>

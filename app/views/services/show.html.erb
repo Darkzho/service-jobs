@@ -12,7 +12,7 @@
           <% if @service.user != current_user %>
             <%= link_to "Agendar", new_service_booking_path(@service), class:"btn btn-primary pill me-2" %>
           <% end %>
-          <%= link_to "Perfil", user_path(@user), class:"btn btn-success pill" %>
+          <%= link_to "Perfil", user_path(@user), class:"btn btn-warning pill" %>
         </div>
       </div>
       <div class="card-body-service-show-photo col-4">
