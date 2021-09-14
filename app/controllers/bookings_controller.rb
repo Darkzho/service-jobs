@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: [:edit, :update, :status, :chat, :order]
+
   def index
     @bookings = Booking.all
   end
@@ -24,11 +26,9 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.find(params[:id])
   end
 
   def update
-    @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     authorize @booking
     if @booking.save!
@@ -45,19 +45,16 @@ class BookingsController < ApplicationController
   # Routes custom
 
   def status
-    @booking = Booking.find(params[:id])
     @markers = { lat: @booking.geocode[0], lng: @booking.geocode[1] }
     authorize @booking
   end
 
   def chat
-    @booking = Booking.find(params[:id])
     @user = current_user
     authorize @booking
   end
 
   def order
-    @booking = Booking.find(params[:id])
     authorize @booking
   end
 
@@ -67,4 +64,7 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:address, :start_date, :end_date)
   end
 
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 end

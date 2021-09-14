@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :set_booking, only: [:new, :create]
+
   def index
     @user = User.find(params[:user_id])
     @reviews = Review.all
@@ -10,13 +12,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @booking = Booking.find(params[:booking_id])
     @review = Review.new
     authorize @review
   end
 
   def create 
-    @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     @review.booking = @booking
     @review.user_id = current_user.id
@@ -34,4 +34,8 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:content, :rating)
   end
 
+  def set_booking
+    @booking = Booking.find(params[:booking_id])
+  end
+  
 end
