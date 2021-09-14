@@ -34,9 +34,10 @@
               <% if current_user == @booking.service.user && @booking.end_date == nil %>
                 <%= simple_form_for (@booking) do |f| %>
                   <%= f.input :end_date, :as => :hidden, :input_html => { :value => Time.now } %>
-                  <%= f.submit "Cerrar booking", class:"btn btn-primary pill " %>
+                  <%= f.submit "Cerrar booking", class:"btn btn-primary pill me-2" %>
                 <% end %>
               <% end %>
+              <%= link_to "Agenda", bookings_path, class: "btn btn-warning pill mt-2" %>
             </div>
           </div>
         </div>
@@ -70,7 +71,7 @@
                 <div class="row d-flex align-items-center">
                   <div class="card col-5 align-items-center border-0">
                     <div class="d-flex mt-2 justify-content-center">
-                      <img src="#" alt="" class="rounded-circle mt-2" style="background-color:gray; width: 150px; height: 150px">
+                      <img class="img-service bd-highlight me-3 rounded-circle" src="<%= cl_image_path @booking.service.user.photo.key%>">
                     </div>
                     <h4><%= User.find(@booking.service.user_id).first_name %> <%= User.find(@booking.service.user_id).last_name %></h4>
                     <h6><%= User.find(@booking.service.user_id).email %></h6>
@@ -93,7 +94,7 @@
                       <% else %>
                         <li class="list-group-item">Calificación: - </li> 
                       <% end %>
-                        <li class="list-group-item">Reseñas recibidas: <%= count_review %></li>
+                        <li class="list-group-item">Evaluaciones recibidas: <%= count_review %></li>
                           <% booking_count = 0 %>
                           <% User.find(@booking.service.user_id).services.each do |service| %>
                             <% service.bookings.each do |booking| %>
@@ -121,7 +122,6 @@
           </div>
         </div>
       </div>
-        <%= link_to "Agenda", bookings_path, class: "btn btn-warning pill mt-2" %>
     </div>
   </div>
 </div>

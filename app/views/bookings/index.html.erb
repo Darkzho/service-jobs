@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="card ">
-    <div class="card-header"> 
+    <div class="card-header d-flex justify-content-between"> 
       <ul class="nav nav-tabs card-header-tabs"  id="myTab" role="tablist">
         <% if current_user.owner %>
           <li class="nav-item">
@@ -24,6 +24,7 @@
           </li>
         <% end %>
       </ul>
+      <%= link_to "Volver", user_path(current_user) , class: "btn btn-warning pill btn-sm" %>
     </div>
     <div class="card-body">
       <!-- Cards trabajos ofrecidos ACTIVOS -->
@@ -130,5 +131,4 @@
       </div>
     </div>
   </div>
-  <%= link_to "Volver", user_path(current_user) , class: "btn btn-warning pill  mt-2" %>
 </div>

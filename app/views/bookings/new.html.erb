@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-8">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body">
           <h2><%= @service.title.capitalize %></h2>
           <h5>Ofrecido por <%= @service.user.first_name %> <%= @service.user.last_name %></h5>
@@ -17,8 +17,8 @@
                           input_html: { autocomplete: "address", class: "pill" } %>
             <%= f.input :start_date, label: "¿Cuándo necesitas el servicio? (Los servicios se agendan con un minimo de 24 horas de anticipación)", as: :string, input_html: { class: "datepicker pill" } %>
             <%= render 'payment' %>
-            <%= f.submit "Confirmar", class:"btn btn-primary pill" %>
-            <%= link_to "Cancelar", services_path, class: "btn btn-primary pill ms-2" %>
+            <%= f.submit "Confirmar", class:"btn btn-primary pill mb-2" %>
+            <%= link_to "Cancelar", services_path, class: "btn btn-secondary pill ms-2 mb-2" %>
           <% end %>
         </div>
       </div>
