@@ -1,22 +1,45 @@
-<div class="container mt-3">
-  <div class="card">
-    <h5 class="card-header"><%= @service.category.capitalize %></h5>
-    <div class="card-body d-flex row">
-      <div class="card-body-service-show d-flex flex-column col-4">
-        <div class="card-body-service-show-info mt-3">
-          <h2 class="card-title"><%= @service.title %></h4>
-          <p class="card-text"><%= @service.description %></p>
-          <p class="card-text"><strong>$ <%= number_with_delimiter(@service.price, :delimiter => '.')%></strong></p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="card p-3 col-lg-8 col-md-10 col-12 shadow">
+      <div class="row">
+        <div class="card-body-service-show d-flex flex-column justify-content-between col-5 ">
+          <div class="card-body-service-show-info mt-3">
+            <h3 class="card-title"><%= @service.title %></h3>
+            <p class="card-text"><%= @service.description %></p>
+            <h5 class="card-text"><strong>$ <%= number_with_delimiter(@service.price, :delimiter => '.')%></strong></h5>
+          </div>
+          <div class="card-body-info-service-owner d-flex">
+            <img class="rounded-circle me-3" src="<%= cl_image_path @service.user.photo.key, height: 90, crop: :fill %>" alt="Nes">
+            <div class="card-body-info-service-owner-details d-flex flex-column align-items-center">
+              <span class="card-text"><%= @service.user.first_name %> <%= @service.user.last_name %></span>
+              <% sum_review = 0 %>
+              <% count_review = 0 %>
+              <% User.find(@service.user_id).services.each do |ser| %>
+                <% ser.bookings.each do |booking| %>
+                  <% booking.reviews.each do |review| %>
+                    <% sum_review += review.rating.to_f  %>
+                    <% count_review += 1 %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% if count_review != 0 %>
+                <% prom_review = sum_review / count_review %>
+                <span> <%= prom_review.round(1)%> <i class="fas fa-star"></i></span>
+              <% else %>
+                <span><%= prom_review = 0 %> <i class="fas fa-star"></i></span> 
+              <% end %>
+            </div>
+          </div>
+          <div class="card-body-service-show-buttons mt-3">
+            <% if @service.user != current_user %>
+              <%= link_to "Agendar", new_service_booking_path(@service), class:"btn btn-primary pill me-2" %>
+            <% end %>
+            <%= link_to "Perfil", user_path(@user), class:"btn btn-warning pill" %>
+          </div>
         </div>
-        <div class="card-body-service-show-buttons mt-3">
-          <% if @service.user != current_user %>
-            <%= link_to "Agendar", new_service_booking_path(@service), class:"btn btn-primary pill me-2" %>
-          <% end %>
-          <%= link_to "Perfil", user_path(@user), class:"btn btn-warning pill" %>
+        <div class="card-body-service-show-photo col-3">
+          <img class="img-service-big" src="<%= cl_image_path @service.photo.key %>" alt="Nes">
         </div>
-      </div>
-      <div class="card-body-service-show-photo col-4">
-        <img src="<%= cl_image_path @service.photo.key, height: 500, crop: :fill %>" alt="Nes">
       </div>
     </div>
   </div>

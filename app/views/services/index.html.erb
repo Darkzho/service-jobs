@@ -34,7 +34,7 @@
             </div>
             <div class="vertical"></div>
             <div class="card-body-info-service-owner d-flex align-items-center justify-content-center flex-column bd-highlight">
-              <img class="rounded-circle" src="<%= cl_image_path service.user.photo.key, height: 45, crop: :fill %>" alt="Nes">
+              <img class="rounded-circle" src="<%= cl_image_path service.user.photo.key, height: 45, crop: :fill %>" alt="profile">
               <div class="card-body-info-service-owner-details d-flex flex-column align-items-center">
                 <span class="card-text"><%= service.user.first_name %> <%= service.user.last_name %></span>
                 <% sum_review = 0 %>
