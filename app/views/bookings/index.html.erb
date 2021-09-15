@@ -118,9 +118,9 @@
                       <% reviewers << review.user_id %>
                     <% end %>
                     <% if reviewers.include?(current_user.id) %>
-                      <a class="btn btn-secondary pill disabled ms-2" href="<%= new_booking_review_path(booking.id) %> aria-disabled="true"">Review</a>
+                      <a class="btn btn-secondary pill disabled ms-2" href="<%= new_booking_review_path(booking.id) %> aria-disabled="true"">Evaluar</a>
                     <% else %>
-                      <a class="btn btn-success pill ms-2" href="<%= new_booking_review_path(booking.id) %>">Review</a>
+                      <a class="btn btn-secondary pill ms-2" href="<%= new_booking_review_path(booking.id) %>">Evaluar</a>
                     <% end %>
                   </div>
                 </div>
