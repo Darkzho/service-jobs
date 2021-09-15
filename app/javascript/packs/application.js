@@ -36,6 +36,8 @@ import { initTyped } from '../plugins/init_typed'
 // import { refreshChat } from '../plugins/chat_service';
 // import { postMessage } from '../plugins/chat_service';
 // import { refreshing } from '../plugins/chat_service';
+// import { refreshChat } from '../plugins/chat_box';
+// import { form } from '../plugins/chat_box';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -51,6 +53,8 @@ document.addEventListener('turbolinks:load', () => {
   // refreshChat();
   // postMessage();
   // refreshing;
+  // refreshChat;
+  // form;
 });
 
 import "controllers"

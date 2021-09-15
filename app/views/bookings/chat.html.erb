@@ -9,9 +9,8 @@
           <p hidden id="my-name"><%= @user.first_name %></p>
 
           <div class="card text-dark bg-light my-3">
-            <div class="card-body " id="messages">
+            <div class="card-body" id="messages">
               <ul class="list unstyle chat-list" id="message-list">
-                <li><strong><%=@user.first_name %></strong>: Hola mundo! <span class="chat-date">(hace 10 minutos)</span></li>
               </ul>
             </div>
           </div>
@@ -20,8 +19,11 @@
             <div class="form-group">
               <input type="text" name="content" id="your-message" class="form-control pill" placeholder="Este es mi mensaje..">
             </div>
+
             <input type="submit" value="Enviar" class="btn btn-primary pill me-2">
-            <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill" %>
+            <%= link_to "Volver", status_booking_path(@booking), class: "btn btn-secondary pill me-2" %>
+
+            <!-- <button class="btn btn-warning pill ms-2" id="refresh">Refresh</button> -->
 
           </form>
         </div>
@@ -29,3 +31,51 @@
     </div>
   </div>
 </div>
+
+<script>
+  const service = document.querySelector('#booking-id')
+  const room = service.innerHTML;
+  // const batch = 386;
+  const baseUrl = `https://wagon-chat.herokuapp.com/${room}/messages`;
+
+  // const refreshBtn = document.querySelector('#refresh');
+  const messages = document.querySelector('#message-list');
+  const form = document.querySelector('#comment-form');
+  const content = document.querySelector('#your-message');
+  const name = document.querySelector('#my-name');
+
+  const refreshChat = () => {
+    fetch(baseUrl)
+      .then(response => response.json())
+      .then((data) => {
+        messages.innerHTML = "";
+        data.messages.forEach((message) => {
+          const minutesAgo = Math.round((new Date() - new Date(message.created_at)) / 60000);
+          const fullMessage = `<li><strong>${message.author}</strong>: ${message.content} <span class="chat-date">(hace ${minutesAgo} minutos)</span></li>`;
+          messages.insertAdjacentHTML('afterbegin', fullMessage);
+        });
+      });
+  };
+
+  // refreshBtn.addEventListener('click', refreshChat);
+
+  const postMessage = (msg) => {
+    fetch(baseUrl, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(msg)
+    })
+      .then(response => response.json())
+      .then((data) => {
+        refreshChat();
+      });
+  };
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const myMessage = { author: name.innerHTML, content: content.value };
+    postMessage(myMessage);
+  });
+
+  document.addEventListener("DOMContentLoaded", refreshChat);
+</script>
